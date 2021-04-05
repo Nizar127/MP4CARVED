@@ -1,0 +1,16 @@
+E:\zue_project\MP4Carver\bin\Debug\MP4Carver.exe.config
+E:\zue_project\MP4Carver\bin\Debug\MP4Carver.exe
+E:\zue_project\MP4Carver\bin\Debug\MP4Carver.pdb
+E:\zue_project\MP4Carver\bin\Debug\Interop.WMPLib.dll
+E:\zue_project\MP4Carver\bin\Debug\AxInterop.WMPLib.dll
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.csprojAssemblyReference.cache
+E:\zue_project\MP4Carver\obj\Debug\Interop.WMPLib.dll
+E:\zue_project\MP4Carver\obj\Debug\AxInterop.WMPLib.dll
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.csproj.ResolveComReference.cache
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.Login.resources
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.Properties.Resources.resources
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.Upload_file.resources
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.csproj.GenerateResource.cache
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.csproj.CoreCompileInputs.cache
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.exe
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.pdb

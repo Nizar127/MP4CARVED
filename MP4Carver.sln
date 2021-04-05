@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP4Carver", "MP4Carver.csproj", "{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11367093-F993-4F6E-9A8B-65EEC0CCA918}
+	EndGlobalSection
+EndGlobal
