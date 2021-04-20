@@ -29,6 +29,7 @@ namespace MP4Carver
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtMatricNo = new System.Windows.Forms.TextBox();
             this.labelClose = new System.Windows.Forms.Label();
@@ -52,6 +53,7 @@ namespace MP4Carver
             this.txtPassword.TabIndex = 43;
             this.txtPassword.Text = "Password";
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtMatricNo
             // 
@@ -92,12 +94,13 @@ namespace MP4Carver
             this.label1.TabIndex = 38;
             this.label1.Text = "REGISTER";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // gotologin
             // 
             this.gotologin.BackColor = System.Drawing.Color.Transparent;
-            this.gotologin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gotologin.LinkColor = System.Drawing.Color.White;
+            this.gotologin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gotologin.LinkColor = System.Drawing.Color.Yellow;
             this.gotologin.Location = new System.Drawing.Point(516, 399);
             this.gotologin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gotologin.Name = "gotologin";
@@ -112,8 +115,8 @@ namespace MP4Carver
             // 
             this.btnRegister.BackColor = System.Drawing.Color.Green;
             this.btnRegister.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnRegister.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnRegister.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
+            this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -161,11 +164,13 @@ namespace MP4Carver
             this.label2.Size = new System.Drawing.Size(109, 22);
             this.label2.TabIndex = 44;
             this.label2.Text = "MP4CARVER";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
@@ -177,7 +182,7 @@ namespace MP4Carver
             this.Controls.Add(this.txtConfirmPass);
             this.Controls.Add(this.txtUsername);
             this.Name = "Register";
-            this.Text = "Form2";
+            this.Text = "REGISTER";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 namespace MP4Carver
 {
@@ -16,14 +17,20 @@ namespace MP4Carver
         public Register()
         {
             InitializeComponent();
+
+            obj_system = new Encryption();
         }
 
-        string conn = "datasource=localhost;port=3306;username=root;password=;database=mp4_carver;";
+        Encryption obj_system;
+
+        string conn = "datasource=127.0.0.1;port=3306;username=root;password=;database=mp4_carver;";
 
 
         public void UserRegister()
         {
-            string query = "INSERT INTO users('id','name','password','matric_no','date_added') VALUES (NULL, '" + txtUsername.Text + "', '" + txtPassword.Text + "', '" + txtMatricNo + "', NOW()) ";
+            string query = "INSERT INTO users(name,password,matric_no) VALUES ('" + txtUsername.Text + "', '" + txtPassword.Text + "', '" + txtMatricNo.Text + "') ";
+           // string query = "INSERT INTO users(name,password,matric_no) VALUES ('try', 'je0121', '0111') ";
+
             //connection mysql XAMPP
             MySqlConnection dbconnection = new MySqlConnection(conn);
             MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
@@ -53,6 +60,7 @@ namespace MP4Carver
                 {
                     MessageBox.Show("Please try again");
                 }
+                dbconnection.Close();
             }
             catch (Exception ex)
             {
@@ -79,6 +87,21 @@ namespace MP4Carver
         private void btnRegister_Click(object sender, EventArgs e)
         {
             UserRegister();
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            //txtPassword_cipher.Text = obj_system.encrypt(txtPassword.clear_text);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

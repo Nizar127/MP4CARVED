@@ -16,7 +16,7 @@ namespace MP4Carver
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Upload_file());
+            Application.Run(new SplashScreen());
         }
     }
 }
