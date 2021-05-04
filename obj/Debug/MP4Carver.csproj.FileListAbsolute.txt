@@ -34,3 +34,7 @@ E:\zue_project\MP4Carver\bin\Debug\System.Numerics.Vectors.dll
 E:\zue_project\MP4Carver\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 E:\zue_project\MP4Carver\bin\Debug\MySql.Data.xml
 E:\zue_project\MP4Carver\obj\Debug\MP4Carver.csproj.CopyComplete
+E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.xml
+E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

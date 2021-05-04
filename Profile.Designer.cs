@@ -37,6 +37,23 @@ namespace MP4Carver
             this.FileCarved = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OpenFolderBox = new System.Windows.Forms.Button();
+            this.carveActivity = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.txtCarveFile = new System.Windows.Forms.TextBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.CarveID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.headerlength = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.caseNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.evidenceNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.unitDescColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.examinerColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.carveFile = new System.Windows.Forms.Button();
+            this.saveImgTab = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.saveImagePanel = new System.Windows.Forms.Panel();
+            this.saveBtn = new System.Windows.Forms.Button();
             this.file = new System.Windows.Forms.TabPage();
             this.deleteFolder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -70,24 +87,15 @@ namespace MP4Carver
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.upload_img = new System.Windows.Forms.Button();
             this.usernameProfile = new System.Windows.Forms.Label();
-            this.carveActivity = new System.Windows.Forms.TabPage();
-            this.carveFile = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.saveImgTab = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.saveImagePanel = new System.Windows.Forms.Panel();
-            this.saveBtn = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.CarveID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.headerlength = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.viewedCarveFiled = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.Main.SuspendLayout();
             this.MainTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.carveActivity.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.saveImgTab.SuspendLayout();
             this.file.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -101,9 +109,6 @@ namespace MP4Carver
             this.About.SuspendLayout();
             this.panel6.SuspendLayout();
             this.historyTab.SuspendLayout();
-            this.carveActivity.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.saveImgTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageBox
@@ -185,6 +190,156 @@ namespace MP4Carver
             this.OpenFolderBox.TabIndex = 0;
             this.OpenFolderBox.Text = "Open Folder";
             this.OpenFolderBox.UseVisualStyleBackColor = false;
+            // 
+            // carveActivity
+            // 
+            this.carveActivity.Controls.Add(this.button3);
+            this.carveActivity.Controls.Add(this.txtCarveFile);
+            this.carveActivity.Controls.Add(this.panel7);
+            this.carveActivity.Controls.Add(this.carveFile);
+            this.carveActivity.Location = new System.Drawing.Point(4, 22);
+            this.carveActivity.Name = "carveActivity";
+            this.carveActivity.Padding = new System.Windows.Forms.Padding(3);
+            this.carveActivity.Size = new System.Drawing.Size(572, 525);
+            this.carveActivity.TabIndex = 4;
+            this.carveActivity.Text = "Carve Activity";
+            this.carveActivity.UseVisualStyleBackColor = true;
+            this.carveActivity.Click += new System.EventHandler(this.carveActivity_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.Control;
+            this.button3.Location = new System.Drawing.Point(452, 42);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(83, 33);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Find File";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // txtCarveFile
+            // 
+            this.txtCarveFile.BackColor = System.Drawing.SystemColors.Info;
+            this.txtCarveFile.Location = new System.Drawing.Point(98, 48);
+            this.txtCarveFile.Name = "txtCarveFile";
+            this.txtCarveFile.Size = new System.Drawing.Size(348, 20);
+            this.txtCarveFile.TabIndex = 8;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel7.Controls.Add(this.listView2);
+            this.panel7.Location = new System.Drawing.Point(6, 78);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(560, 308);
+            this.panel7.TabIndex = 3;
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.CarveID,
+            this.columnFileName,
+            this.headerlength,
+            this.caseNum,
+            this.evidenceNum,
+            this.unitDescColumn,
+            this.examinerColumn});
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(3, 3);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(554, 302);
+            this.listView2.TabIndex = 0;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // CarveID
+            // 
+            this.CarveID.Text = "ID";
+            // 
+            // columnFileName
+            // 
+            this.columnFileName.Text = "File Name";
+            this.columnFileName.Width = 200;
+            // 
+            // headerlength
+            // 
+            this.headerlength.Text = "Header-Length";
+            this.headerlength.Width = 150;
+            // 
+            // caseNum
+            // 
+            this.caseNum.Text = "case Number";
+            // 
+            // evidenceNum
+            // 
+            this.evidenceNum.Text = "Evidence Number";
+            // 
+            // unitDescColumn
+            // 
+            this.unitDescColumn.Text = "Unit Description";
+            // 
+            // examinerColumn
+            // 
+            this.examinerColumn.Text = "Examiner";
+            // 
+            // carveFile
+            // 
+            this.carveFile.BackColor = System.Drawing.Color.Green;
+            this.carveFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carveFile.ForeColor = System.Drawing.SystemColors.Control;
+            this.carveFile.Location = new System.Drawing.Point(219, 392);
+            this.carveFile.Name = "carveFile";
+            this.carveFile.Size = new System.Drawing.Size(120, 53);
+            this.carveFile.TabIndex = 1;
+            this.carveFile.Text = "Carve File";
+            this.carveFile.UseVisualStyleBackColor = false;
+            this.carveFile.Click += new System.EventHandler(this.carveFile_Click);
+            // 
+            // saveImgTab
+            // 
+            this.saveImgTab.Controls.Add(this.button2);
+            this.saveImgTab.Controls.Add(this.saveImagePanel);
+            this.saveImgTab.Controls.Add(this.saveBtn);
+            this.saveImgTab.Location = new System.Drawing.Point(4, 22);
+            this.saveImgTab.Name = "saveImgTab";
+            this.saveImgTab.Size = new System.Drawing.Size(572, 525);
+            this.saveImgTab.TabIndex = 5;
+            this.saveImgTab.Text = "Save MP4 Image";
+            this.saveImgTab.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.Control;
+            this.button2.Location = new System.Drawing.Point(170, 350);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(162, 39);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Open Image";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // saveImagePanel
+            // 
+            this.saveImagePanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.saveImagePanel.Location = new System.Drawing.Point(66, 51);
+            this.saveImagePanel.Name = "saveImagePanel";
+            this.saveImagePanel.Size = new System.Drawing.Size(341, 272);
+            this.saveImagePanel.TabIndex = 5;
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.BackColor = System.Drawing.Color.Blue;
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.saveBtn.Location = new System.Drawing.Point(433, 151);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(120, 53);
+            this.saveBtn.TabIndex = 4;
+            this.saveBtn.Text = "Save MP4 Image";
+            this.saveBtn.UseVisualStyleBackColor = false;
             // 
             // file
             // 
@@ -378,6 +533,7 @@ namespace MP4Carver
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.viewedCarveFiled);
             this.panel6.Controls.Add(this.fileListData);
             this.panel6.Controls.Add(this.matricListData);
             this.panel6.Controls.Add(this.nameData);
@@ -388,7 +544,7 @@ namespace MP4Carver
             this.panel6.Controls.Add(this.matricNo);
             this.panel6.Location = new System.Drawing.Point(6, 6);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(408, 276);
+            this.panel6.Size = new System.Drawing.Size(408, 391);
             this.panel6.TabIndex = 14;
             // 
             // fileListData
@@ -423,6 +579,7 @@ namespace MP4Carver
             this.viewFile.TabIndex = 15;
             this.viewFile.Text = "View Carve File";
             this.viewFile.UseVisualStyleBackColor = false;
+            this.viewFile.Click += new System.EventHandler(this.viewFile_Click);
             // 
             // label3
             // 
@@ -536,133 +693,12 @@ namespace MP4Carver
             this.usernameProfile.TabIndex = 0;
             this.usernameProfile.Text = "UsernameProfile";
             // 
-            // carveActivity
+            // viewedCarveFiled
             // 
-            this.carveActivity.Controls.Add(this.button3);
-            this.carveActivity.Controls.Add(this.textBox1);
-            this.carveActivity.Controls.Add(this.panel7);
-            this.carveActivity.Controls.Add(this.carveFile);
-            this.carveActivity.Location = new System.Drawing.Point(4, 22);
-            this.carveActivity.Name = "carveActivity";
-            this.carveActivity.Padding = new System.Windows.Forms.Padding(3);
-            this.carveActivity.Size = new System.Drawing.Size(572, 525);
-            this.carveActivity.TabIndex = 4;
-            this.carveActivity.Text = "Carve Activity";
-            this.carveActivity.UseVisualStyleBackColor = true;
-            this.carveActivity.Click += new System.EventHandler(this.carveActivity_Click);
-            // 
-            // carveFile
-            // 
-            this.carveFile.BackColor = System.Drawing.Color.Green;
-            this.carveFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carveFile.ForeColor = System.Drawing.SystemColors.Control;
-            this.carveFile.Location = new System.Drawing.Point(219, 392);
-            this.carveFile.Name = "carveFile";
-            this.carveFile.Size = new System.Drawing.Size(120, 53);
-            this.carveFile.TabIndex = 1;
-            this.carveFile.Text = "Carve File";
-            this.carveFile.UseVisualStyleBackColor = false;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel7.Controls.Add(this.listView2);
-            this.panel7.Location = new System.Drawing.Point(6, 78);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(560, 308);
-            this.panel7.TabIndex = 3;
-            // 
-            // saveImgTab
-            // 
-            this.saveImgTab.Controls.Add(this.button2);
-            this.saveImgTab.Controls.Add(this.saveImagePanel);
-            this.saveImgTab.Controls.Add(this.saveBtn);
-            this.saveImgTab.Location = new System.Drawing.Point(4, 22);
-            this.saveImgTab.Name = "saveImgTab";
-            this.saveImgTab.Size = new System.Drawing.Size(572, 525);
-            this.saveImgTab.TabIndex = 5;
-            this.saveImgTab.Text = "Save MP4 Image";
-            this.saveImgTab.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(170, 350);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 39);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Open Image";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // saveImagePanel
-            // 
-            this.saveImagePanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.saveImagePanel.Location = new System.Drawing.Point(66, 51);
-            this.saveImagePanel.Name = "saveImagePanel";
-            this.saveImagePanel.Size = new System.Drawing.Size(341, 272);
-            this.saveImagePanel.TabIndex = 5;
-            // 
-            // saveBtn
-            // 
-            this.saveBtn.BackColor = System.Drawing.Color.Blue;
-            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.saveBtn.Location = new System.Drawing.Point(433, 151);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(120, 53);
-            this.saveBtn.TabIndex = 4;
-            this.saveBtn.Text = "Save MP4 Image";
-            this.saveBtn.UseVisualStyleBackColor = false;
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CarveID,
-            this.columnFileName,
-            this.headerlength});
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 3);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(554, 302);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // CarveID
-            // 
-            this.CarveID.Text = "ID";
-            // 
-            // columnFileName
-            // 
-            this.columnFileName.Text = "File Name";
-            this.columnFileName.Width = 200;
-            // 
-            // headerlength
-            // 
-            this.headerlength.Text = "Header-Length";
-            this.headerlength.Width = 150;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(98, 48);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(348, 20);
-            this.textBox1.TabIndex = 8;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(452, 42);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 33);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Find File";
-            this.button3.UseVisualStyleBackColor = false;
+            this.viewedCarveFiled.Location = new System.Drawing.Point(3, 217);
+            this.viewedCarveFiled.Name = "viewedCarveFiled";
+            this.viewedCarveFiled.Size = new System.Drawing.Size(402, 160);
+            this.viewedCarveFiled.TabIndex = 18;
             // 
             // Profile
             // 
@@ -681,6 +717,10 @@ namespace MP4Carver
             this.MainTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.carveActivity.ResumeLayout(false);
+            this.carveActivity.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.saveImgTab.ResumeLayout(false);
             this.file.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -700,10 +740,6 @@ namespace MP4Carver
             this.panel6.PerformLayout();
             this.historyTab.ResumeLayout(false);
             this.historyTab.PerformLayout();
-            this.carveActivity.ResumeLayout(false);
-            this.carveActivity.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.saveImgTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -763,6 +799,11 @@ namespace MP4Carver
         private System.Windows.Forms.ColumnHeader columnFileName;
         private System.Windows.Forms.ColumnHeader headerlength;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCarveFile;
+        private System.Windows.Forms.ColumnHeader caseNum;
+        private System.Windows.Forms.ColumnHeader evidenceNum;
+        private System.Windows.Forms.ColumnHeader unitDescColumn;
+        private System.Windows.Forms.ColumnHeader examinerColumn;
+        private System.Windows.Forms.Panel viewedCarveFiled;
     }
 }

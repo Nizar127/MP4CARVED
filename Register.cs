@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 
+using AesEncDec;
+using System.IO;
+
 namespace MP4Carver
 {
     public partial class Register : Form
@@ -18,13 +21,22 @@ namespace MP4Carver
         {
             InitializeComponent();
 
-            obj_system = new Encryption();
+            //obj_system = new Encryption();
         }
 
-        Encryption obj_system;
+        //Encryption obj_system;
 
         string conn = "datasource=127.0.0.1;port=3306;username=root;password=;database=mp4_carver;";
-
+        
+        static string Encrypted(string value)
+        {
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                UTF8Encoding utf8 = new UTF8Encoding();
+                byte[] data = md5.ComputeHash(utf8.GetBytes(value));
+                return Convert.ToBase64String(data);
+            }
+        }
 
         public void UserRegister()
         {
@@ -35,31 +47,27 @@ namespace MP4Carver
             MySqlConnection dbconnection = new MySqlConnection(conn);
             MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
             commandDB.CommandTimeout = 60;
-            MySqlDataReader reader;
+            //MySqlDataReader reader;
 
             try
             {
                 dbconnection.Open();
-                reader = commandDB.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        MessageBox.Show("Welcome to MP4Carver");
+       
+                
+                    MessageBox.Show("Welcome to MP4Carver");
                         Login loginSys = new Login();
                         loginSys.Show();
                         this.Hide();
                         //Profile from2 = new Profile();
                         // from2.Show();
                         // this.Hide();
-                    }
+                    
 
-                }
-                else
-                {
-                    MessageBox.Show("Please try again");
-                }
+                
+               // else
+                //{
+                   // MessageBox.Show("Please try again");
+               // }
                 dbconnection.Close();
             }
             catch (Exception ex)
@@ -71,6 +79,26 @@ namespace MP4Carver
             {
                 MessageBox.Show("Please Fill Username and Password and Matric No", "Error");
             }
+
+            if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Please enter your password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string dir = txtUsername.Text;
+            Directory.CreateDirectory("data\\" + dir);
+            var sw = new StreamWriter("data\\" + dir + "\\data.ls");
+
+            string encusr = AesCryp.Encrypt(txtUsername.Text);
+            string encpass = AesCryp.Encrypt(txtPassword.Text);
+
+            sw.WriteLine(encusr);
+            sw.WriteLine(encpass);
+            sw.Close();
+
+            MessageBox.Show("User {0} was successfully created.", txtUsername.Text);
+            this.Close();
         }
 
         private void linkLabelLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

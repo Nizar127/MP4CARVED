@@ -3,41 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Security.Cryptography;
 
-namespace MP4Carver
+namespace AesEncDec
 {
-    class Encryption
+    class AesCryp
     {
-        AesCryptoServiceProvider crypt_provider;
-        public Encryption()
+        public static string IV = "adjcy2749f01jdu0";  // 16 chars = 128 bytes
+        public static string Key =  "eifhskrlcakdsj32u9idef21ew24f90o";  // 32 chars = 256 bytes
+
+        public static string Encrypt(string decrypted)
         {
-            crypt_provider = new AesCryptoServiceProvider();
-            crypt_provider.BlockSize = 128;
-            crypt_provider.KeySize = 256;
-            crypt_provider.GenerateIV();
-            crypt_provider.GenerateKey();
-            crypt_provider.Mode = CipherMode.CBC;
-            crypt_provider.Padding = PaddingMode.PKCS7;
+            byte[] textbytes = ASCIIEncoding.ASCII.GetBytes(decrypted);
+            AesCryptoServiceProvider encdec = new AesCryptoServiceProvider();
+            encdec.BlockSize = 128;
+            encdec.KeySize = 256;
+            encdec.Key = ASCIIEncoding.ASCII.GetBytes(Key);
+            encdec.IV = ASCIIEncoding.ASCII.GetBytes(IV);
+            encdec.Padding = PaddingMode.PKCS7;
+            encdec.Mode = CipherMode.CBC;
+
+            ICryptoTransform icrypt = encdec.CreateEncryptor(encdec.Key, encdec.IV);
+
+            byte[] enc = icrypt.TransformFinalBlock(textbytes, 0, textbytes.Length);
+            icrypt.Dispose();
+
+            return Convert.ToBase64String(enc);
         }
 
-        public String encrypt(String clear_text)
+        public static string Decrypt(string encrypted)
         {
-            ICryptoTransform transform = crypt_provider.CreateEncryptor();
-            byte[] encrypted_bytes = transform.TransformFinalBlock(ASCIIEncoding.ASCII.GetBytes(clear_text), 0, clear_text.Length);
+            byte[] encbytes = Convert.FromBase64String(encrypted);
+            AesCryptoServiceProvider encdec = new AesCryptoServiceProvider();
+            encdec.BlockSize = 128;
+            encdec.KeySize = 256;
+            encdec.Key = ASCIIEncoding.ASCII.GetBytes(Key);
+            encdec.IV = ASCIIEncoding.ASCII.GetBytes(IV);
+            encdec.Padding = PaddingMode.PKCS7;
+            encdec.Mode = CipherMode.CBC;
 
-            string str = Convert.ToBase64String(encrypted_bytes);
-            return str;
-        }
+            ICryptoTransform icrypt = encdec.CreateDecryptor(encdec.Key, encdec.IV);
 
-        public String decrypt(String cipher_text)
-        {
-            ICryptoTransform transform = crypt_provider.CreateDecryptor();
-            byte[] enc_bytes = Convert.FromBase64String(cipher_text);
-            byte[] decrypted_bytes = transform.TransformFinalBlock(enc_bytes, 0, enc_bytes.Length);
+            byte[] dec = icrypt.TransformFinalBlock(encbytes, 0, encbytes.Length);
+            icrypt.Dispose();
 
-            string str = ASCIIEncoding.ASCII.GetString(decrypted_bytes);
-            return str;
+            return ASCIIEncoding.ASCII.GetString(dec);
         }
     }
 }

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+using AesEncDec;
+using System.IO;
+
 namespace MP4Carver
 {
     public partial class Login : Form
@@ -18,11 +21,11 @@ namespace MP4Carver
             InitializeComponent();
         }
 
-        string conn = "datasource=localhost;port=3306;username=root;password=;database=mp4_carver;";
-        
+        string conn = "datasource=127.0.0.1;port=3306;username=root;password=;database=mp4_carver;";
+
         public void userLogin()
         {
-            string query = "SELECT * FROM users WHERE name='" + txtUser + "' AND password='" + txtPassword + "' ";
+            string query = "SELECT `name`,`password` FROM users WHERE `name`='" + txtUser.Text + "' AND `password`='" + txtPassword.Text + "' ";
             //connection mysql XAMPP
             MySqlConnection dbconnection = new MySqlConnection(conn);
             MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
@@ -33,6 +36,39 @@ namespace MP4Carver
             {
                 dbconnection.Open();
                 reader = commandDB.ExecuteReader();
+
+                if (txtUser.Text.Length < 3 || txtPassword.Text.Length < 5)
+                {
+                    MessageBox.Show("Username or Password is invaled or too short!");
+                }
+                else
+                {
+                    string dir = txtUser.Text;
+                    if (!Directory.Exists("data\\" + dir))
+                        MessageBox.Show("User {0} was not found!", dir);
+                    else
+                    {
+                        var sr = new StreamReader("data\\" + dir + "\\data.ls");
+
+                        string encusr = sr.ReadLine();
+                        string encpass = sr.ReadLine();
+                        sr.Close();
+
+                        string decusr = AesCryp.Decrypt(encusr);
+                        string decpass = AesCryp.Decrypt(encpass);
+
+                        if (decusr == txtUser.Text && decpass == txtPassword.Text)
+                        {
+                            MessageBox.Show("Welcome {0} to the private area!", decusr);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error user or password is wrong!");
+                        }
+
+                    }
+                }
+
 
                 if (reader.HasRows)
                 {
