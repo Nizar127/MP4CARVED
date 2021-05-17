@@ -38,3 +38,5 @@ E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.dll
 E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.xml
 E:\zue_project\MP4Carver\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.EditProfile.resources
+E:\zue_project\MP4Carver\obj\Debug\MP4Carver.AddImage.resources

@@ -49,11 +49,13 @@ namespace MP4Carver
             this.evidenceNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.unitDescColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.examinerColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsDeleted = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.carveFile = new System.Windows.Forms.Button();
             this.saveImgTab = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.saveImagePanel = new System.Windows.Forms.Panel();
-            this.saveBtn = new System.Windows.Forms.Button();
+            this.DGItems = new System.Windows.Forms.DataGridView();
+            this.txtFile = new System.Windows.Forms.TextBox();
+            this.btnSaveData = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.file = new System.Windows.Forms.TabPage();
             this.deleteFolder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,9 +74,7 @@ namespace MP4Carver
             this.button1 = new System.Windows.Forms.Button();
             this.About = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.fileListData = new System.Windows.Forms.Panel();
-            this.matricListData = new System.Windows.Forms.Panel();
-            this.nameData = new System.Windows.Forms.Panel();
+            this.viewedCarveFiled = new System.Windows.Forms.Panel();
             this.viewFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.fileNumList = new System.Windows.Forms.Label();
@@ -87,7 +87,10 @@ namespace MP4Carver
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.upload_img = new System.Windows.Forms.Button();
             this.usernameProfile = new System.Windows.Forms.Label();
-            this.viewedCarveFiled = new System.Windows.Forms.Panel();
+            this.loadImg = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.Main.SuspendLayout();
             this.MainTab.SuspendLayout();
@@ -96,6 +99,7 @@ namespace MP4Carver
             this.carveActivity.SuspendLayout();
             this.panel7.SuspendLayout();
             this.saveImgTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGItems)).BeginInit();
             this.file.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -244,7 +248,8 @@ namespace MP4Carver
             this.caseNum,
             this.evidenceNum,
             this.unitDescColumn,
-            this.examinerColumn});
+            this.examinerColumn,
+            this.IsDeleted});
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(3, 3);
             this.listView2.Name = "listView2";
@@ -252,6 +257,7 @@ namespace MP4Carver
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
             // CarveID
             // 
@@ -265,11 +271,12 @@ namespace MP4Carver
             // headerlength
             // 
             this.headerlength.Text = "Header-Length";
-            this.headerlength.Width = 150;
+            this.headerlength.Width = 124;
             // 
             // caseNum
             // 
             this.caseNum.Text = "case Number";
+            this.caseNum.Width = 83;
             // 
             // evidenceNum
             // 
@@ -298,9 +305,11 @@ namespace MP4Carver
             // 
             // saveImgTab
             // 
-            this.saveImgTab.Controls.Add(this.button2);
-            this.saveImgTab.Controls.Add(this.saveImagePanel);
-            this.saveImgTab.Controls.Add(this.saveBtn);
+            this.saveImgTab.Controls.Add(this.loadImg);
+            this.saveImgTab.Controls.Add(this.DGItems);
+            this.saveImgTab.Controls.Add(this.txtFile);
+            this.saveImgTab.Controls.Add(this.btnSaveData);
+            this.saveImgTab.Controls.Add(this.btnSave);
             this.saveImgTab.Location = new System.Drawing.Point(4, 22);
             this.saveImgTab.Name = "saveImgTab";
             this.saveImgTab.Size = new System.Drawing.Size(572, 525);
@@ -308,38 +317,47 @@ namespace MP4Carver
             this.saveImgTab.Text = "Save MP4 Image";
             this.saveImgTab.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // DGItems
             // 
-            this.button2.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(170, 350);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 39);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Open Image";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.DGItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGItems.Location = new System.Drawing.Point(3, 60);
+            this.DGItems.Name = "DGItems";
+            this.DGItems.Size = new System.Drawing.Size(566, 368);
+            this.DGItems.TabIndex = 0;
+            this.DGItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGItems_CellContentClick);
             // 
-            // saveImagePanel
+            // txtFile
             // 
-            this.saveImagePanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.saveImagePanel.Location = new System.Drawing.Point(66, 51);
-            this.saveImagePanel.Name = "saveImagePanel";
-            this.saveImagePanel.Size = new System.Drawing.Size(341, 272);
-            this.saveImagePanel.TabIndex = 5;
+            this.txtFile.Location = new System.Drawing.Point(12, 25);
+            this.txtFile.Name = "txtFile";
+            this.txtFile.Size = new System.Drawing.Size(358, 20);
+            this.txtFile.TabIndex = 7;
             // 
-            // saveBtn
+            // btnSaveData
             // 
-            this.saveBtn.BackColor = System.Drawing.Color.Blue;
-            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.saveBtn.Location = new System.Drawing.Point(433, 151);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(120, 53);
-            this.saveBtn.TabIndex = 4;
-            this.saveBtn.Text = "Save MP4 Image";
-            this.saveBtn.UseVisualStyleBackColor = false;
+            this.btnSaveData.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnSaveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveData.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSaveData.Location = new System.Drawing.Point(374, 15);
+            this.btnSaveData.Name = "btnSaveData";
+            this.btnSaveData.Size = new System.Drawing.Size(96, 39);
+            this.btnSaveData.TabIndex = 6;
+            this.btnSaveData.Text = "Open Image";
+            this.btnSaveData.UseVisualStyleBackColor = false;
+            this.btnSaveData.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.Blue;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSave.Location = new System.Drawing.Point(200, 448);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(157, 39);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Save MP4 Image";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // file
             // 
@@ -533,10 +551,10 @@ namespace MP4Carver
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.textBox3);
+            this.panel6.Controls.Add(this.textBox2);
+            this.panel6.Controls.Add(this.textBox1);
             this.panel6.Controls.Add(this.viewedCarveFiled);
-            this.panel6.Controls.Add(this.fileListData);
-            this.panel6.Controls.Add(this.matricListData);
-            this.panel6.Controls.Add(this.nameData);
             this.panel6.Controls.Add(this.viewFile);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.fileNumList);
@@ -544,29 +562,15 @@ namespace MP4Carver
             this.panel6.Controls.Add(this.matricNo);
             this.panel6.Location = new System.Drawing.Point(6, 6);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(408, 391);
+            this.panel6.Size = new System.Drawing.Size(429, 391);
             this.panel6.TabIndex = 14;
             // 
-            // fileListData
+            // viewedCarveFiled
             // 
-            this.fileListData.Location = new System.Drawing.Point(161, 123);
-            this.fileListData.Name = "fileListData";
-            this.fileListData.Size = new System.Drawing.Size(72, 28);
-            this.fileListData.TabIndex = 18;
-            // 
-            // matricListData
-            // 
-            this.matricListData.Location = new System.Drawing.Point(132, 76);
-            this.matricListData.Name = "matricListData";
-            this.matricListData.Size = new System.Drawing.Size(191, 28);
-            this.matricListData.TabIndex = 17;
-            // 
-            // nameData
-            // 
-            this.nameData.Location = new System.Drawing.Point(73, 29);
-            this.nameData.Name = "nameData";
-            this.nameData.Size = new System.Drawing.Size(317, 28);
-            this.nameData.TabIndex = 16;
+            this.viewedCarveFiled.Location = new System.Drawing.Point(3, 217);
+            this.viewedCarveFiled.Name = "viewedCarveFiled";
+            this.viewedCarveFiled.Size = new System.Drawing.Size(423, 160);
+            this.viewedCarveFiled.TabIndex = 18;
             // 
             // viewFile
             // 
@@ -633,6 +637,7 @@ namespace MP4Carver
             this.EditName.TabIndex = 12;
             this.EditName.Text = "Edit Info";
             this.EditName.UseVisualStyleBackColor = false;
+            this.EditName.Click += new System.EventHandler(this.EditName_Click);
             // 
             // historyTab
             // 
@@ -693,12 +698,41 @@ namespace MP4Carver
             this.usernameProfile.TabIndex = 0;
             this.usernameProfile.Text = "UsernameProfile";
             // 
-            // viewedCarveFiled
+            // loadImg
             // 
-            this.viewedCarveFiled.Location = new System.Drawing.Point(3, 217);
-            this.viewedCarveFiled.Name = "viewedCarveFiled";
-            this.viewedCarveFiled.Size = new System.Drawing.Size(402, 160);
-            this.viewedCarveFiled.TabIndex = 18;
+            this.loadImg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.loadImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadImg.ForeColor = System.Drawing.SystemColors.Control;
+            this.loadImg.Location = new System.Drawing.Point(473, 15);
+            this.loadImg.Name = "loadImg";
+            this.loadImg.Size = new System.Drawing.Size(84, 39);
+            this.loadImg.TabIndex = 8;
+            this.loadImg.Text = "Load ";
+            this.loadImg.UseVisualStyleBackColor = false;
+            this.loadImg.Click += new System.EventHandler(this.loadImg_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(161, 28);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.TabIndex = 19;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(161, 76);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(237, 20);
+            this.textBox2.TabIndex = 20;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(161, 122);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(237, 20);
+            this.textBox3.TabIndex = 21;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // Profile
             // 
@@ -721,6 +755,8 @@ namespace MP4Carver
             this.carveActivity.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.saveImgTab.ResumeLayout(false);
+            this.saveImgTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGItems)).EndInit();
             this.file.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -778,9 +814,6 @@ namespace MP4Carver
         private System.Windows.Forms.Label nameInfo;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label matricNo;
-        private System.Windows.Forms.Panel fileListData;
-        private System.Windows.Forms.Panel matricListData;
-        private System.Windows.Forms.Panel nameData;
         private System.Windows.Forms.Button viewFile;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label fileNumList;
@@ -791,9 +824,8 @@ namespace MP4Carver
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button carveFile;
         private System.Windows.Forms.TabPage saveImgTab;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel saveImagePanel;
-        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button btnSaveData;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.ColumnHeader CarveID;
         private System.Windows.Forms.ColumnHeader columnFileName;
@@ -805,5 +837,12 @@ namespace MP4Carver
         private System.Windows.Forms.ColumnHeader unitDescColumn;
         private System.Windows.Forms.ColumnHeader examinerColumn;
         private System.Windows.Forms.Panel viewedCarveFiled;
+        private System.Windows.Forms.TextBox txtFile;
+        private System.Windows.Forms.ColumnHeader IsDeleted;
+        private System.Windows.Forms.DataGridView DGItems;
+        private System.Windows.Forms.Button loadImg;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

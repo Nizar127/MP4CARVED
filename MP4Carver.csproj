@@ -37,6 +37,7 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
@@ -57,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddImage.Designer.cs">
+      <DependentUpon>AddImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="carve_file.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +71,12 @@
       <DependentUpon>carve_file.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="EditProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProfile.Designer.cs">
+      <DependentUpon>EditProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Encryption.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -103,6 +116,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddImage.resx">
+      <DependentUpon>AddImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProfile.resx">
+      <DependentUpon>EditProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
