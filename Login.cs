@@ -111,5 +111,10 @@ namespace MP4Carver
             Register register = new Register();
             register.Show();
         }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

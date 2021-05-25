@@ -10,6 +10,11 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.IO;
 using MySql.Data.MySqlClient;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
+using CsvHelper;
+
+
 //using WindowsFormsApplication1.DAL;
 
 namespace MP4Carver
@@ -80,6 +85,11 @@ namespace MP4Carver
 
         }
 
+
+
+
+
+
         private void imageBox_Click(object sender, EventArgs e)
         {
 
@@ -107,128 +117,151 @@ namespace MP4Carver
 
         private void carveFile_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog openFolder = new CommonOpenFileDialog();
-            openFolder.IsFolderPicker = true;
-            if (openFolder.ShowDialog() == CommonFileDialogResult.Ok)
+
+            OpenFileDialog dv = new OpenFileDialog();
+            string filter = "csv file (*.csv)|*.csv| all files (*.*)|*.*";
+            dv.Filter = filter;
+            dv.ShowDialog();
+            txtCarveFile.Text = dv.FileName;
+            BindDataIntoCSV(txtCarveFile.Text);
+
+        }
+
+
+        private void BindDataIntoCSV(string filepath)
+        {
+            DataTable dt = new DataTable();
+            string[] lines = System.IO.File.ReadAllLines(filepath);
+            if (lines.Length > 0)
             {
-                txtCarveFile.Text = openFolder.FileName;
+                string firstline = lines[0];
+                string[] headerlabels = firstline.Split('\t');
+                foreach (string headerword in headerlabels)
+                {
+                    dt.Columns.Add(new DataColumn(headerword));
+                }
+
+                for (int r = 1; r < lines.Length; r++)
+                {
+                    string[] DataWords = lines[r].Split('\t');
+                    DataRow dr = dt.NewRow();
+                    int columnindex = 0;
+                    foreach (string headerword in headerlabels)
+                    {
+                        dr[headerword] = DataWords[columnindex++];
+                    }
+                    dt.Rows.Add(dr);
+                }
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                DGItem2.DataSource = dt;
+                //if(dt.Columns = "Filename")
+                DataView dv;
+                dv = new DataView(dt, "Filename = '%.mp4%'", "Filename Desc", DataViewRowState.CurrentRows);
+               
             }
 
         }
 
-        //OpenFileDialog fileOpen = new OpenFileDialog();
-
-
-        private void button2_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dg = new OpenFileDialog();
-            string filter = "CSV file (*.csv)|*.csv| All Files (*.*)|*.*";
-            dg.Filter = filter;
-            dg.ShowDialog();
-            txtFile.Text = dg.FileName;
 
+            //Console.WriteLine(string.Join("", readRecord(".mp4", "yes",9)));
+            MessageBox.Show(string.Join("", readRecord("yes", txtCarveFile.Text,7)));
 
-
-            //    try
-            //    {
-            //        OpenFileDialog dialog = new OpenFileDialog();
-            //        string filter = "CSV file (*.csv)|*.csv| All Files (*.*)|*.*";
-            //        dialog.Filter = filter;
-            //        dialog.Filter = "Microsoft Excel Comma Separated Values File (*.csv)|*.csv|";
-            //        dialog.ShowDialog();
-            //        int ImportedRecord = 0, inValidItem = 0;
-            //        string SourceURl = "";
-
-            //        if (dialog.FileName != "")
-            //        {
-            //            if (dialog.FileName.EndsWith(".csv"))
-            //            {
-            //                DataTable dtNew = new DataTable();
-            //                dtNew = GetDataTabletFromCSVFile(dialog.FileName);
-            //                if (Convert.ToString(dtNew.Columns[0]).ToLower() != "filename")
-            //                {
-            //                    MessageBox.Show("Invalid Items File");
-            //                    MessageBox.Show(dtNew.ToString);
-            //                    btnSaveData.Enabled = false;
-            //                    return;
-            //                }
-            //                txtFile.Text = dialog.SafeFileName;
-            //                SourceURl = dialog.FileName;
-            //                Console.WriteLine(dtNew);
-            //                if (dtNew.Rows != null && dtNew.Rows.ToString() != String.Empty)
-            //                {
-            //                    DGItems.DataSource = dtNew;
-            //                }
-            //                foreach (DataGridViewRow row in DGItems.Rows)
-            //                {
-            //                    if (Convert.ToString(row.Cells["Filename"].Value) == "" || row.Cells["Filename"].Value == null
-            //                        || Convert.ToString(row.Cells["Full Path"].Value) == "" || row.Cells["Full Path"].Value == null
-            //                        || Convert.ToString(row.Cells["Size(bytes)"].Value) == "" || row.Cells["Size(bytes)"].Value == null
-            //                        || Convert.ToString(row.Cells["Created"].Value) == "" || row.Cells["Created"].Value == null
-            //                        || Convert.ToString(row.Cells["Modified"].Value) == "" || row.Cells["Modified"].Value == null
-            //                        || Convert.ToString(row.Cells["Is Deleted"].Value) == "" || row.Cells["Is Deleted"].Value == null)
-            //                    {
-            //                        row.DefaultCellStyle.BackColor = Color.Red;
-            //                        inValidItem += 1;
-            //                    }
-            //                    else
-            //                    {
-            //                        ImportedRecord += 1;
-            //                    }
-            //                }
-            //                if (DGItems.Rows.Count == 0)
-            //                {
-            //                    btnSave.Enabled = false;
-            //                    MessageBox.Show("There is no data in this file", "GAUTAM POS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //                }
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("Selected File is Invalid, Please Select valid csv file.", "GAUTAM POS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            }
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Exception " + ex);
-            //    }
-            //    String imagePlace = "";
-            //    try
-            //    {
-            //        OpenFileDialog fileOpen = new OpenFileDialog();
-            //        fileOpen.Filter = "GPD|*.gpd";
-            //        dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
-            //        if (fileOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //        {
-            //            imagePlace = fileOpen.FileName;
-            //            saveImagePanel.Text = imagePlace;
-            //        }
-            //    }
-            //    catch (Exception)
-            //    {
-            //        MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
+          
 
         }
 
-        public List<Item> LoadCSV(string csvFile)
+        private static string[] readRecord(string searchTerm, string filepath, int position)
         {
-            var query = from test in File.ReadAllLines(csvFile)
-                        let data = test.Split(',')
-                        select new Item
-                        {
-                            filename=data[0],
-                            Fullpath=data[1],
-                            Sizes=int.Parse(data[2]),
-                            Created=data[3],
-                            Modified=data[4],
-                            Accessed=data[5],
-                            IsDeleted=bool.Parse(data[6])
+            position--;
+            string[] recordNotFound = { "Record not found",filepath };
+            try
+            {
+                string[] lines = File.ReadAllLines(filepath);
 
-            
-                        };
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string[] fields = lines[i].Split('\t');
+                    MessageBox.Show(" "+fields[position]);
+                    if( recordMathes(searchTerm, fields, position))
+                    {
+                        Console.WriteLine("Record Found");
+                        return fields;
+                    }
 
-            return query.ToList();
+                }
+
+                return recordNotFound;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("This program pissing me off");
+                return recordNotFound;
+               // return " " +ex.Message;
+                throw new ApplicationException("This seriously looking for trouble", ex);
+            }
+
+        }
+
+        public static bool recordMathes(string searchTerm, string[] record, int position)
+        {
+            if (record[position].Equals(searchTerm))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+
+            OpenFileDialog dg = new OpenFileDialog();
+            string filter = "csv file (*.csv)|*.csv| all files (*.*)|*.*";
+            dg.Filter = filter;
+            dg.ShowDialog();
+            txtFile.Text = dg.FileName;
+            BindDataCSV(txtFile.Text);
+
+
+
+        }
+
+        private void BindDataCSV(string filepath)
+        {
+            DataTable dt = new DataTable();
+            string[] lines = System.IO.File.ReadAllLines(filepath);
+            if (lines.Length > 0)
+            {
+                string firstline = lines[0];
+                string[] headerlabels = firstline.Split('\t');
+                foreach (string headerword in headerlabels)
+                {
+                    dt.Columns.Add(new DataColumn(headerword));
+                }
+
+                for (int r = 1; r < lines.Length; r++)
+                {
+                    string[] DataWords = lines[r].Split('\t');
+                    DataRow dr = dt.NewRow();
+                    int columnindex = 0;
+                    foreach (string headerword in headerlabels)
+                    {
+                        dr[headerword] = DataWords[columnindex++];
+                    }
+                    dt.Rows.Add(dr);
+                }
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                DGItems.DataSource = dt;
+            }
+
         }
 
         public static DataTable GetDataTabletFromCSVFile(string csv_file_path)
@@ -297,40 +330,32 @@ namespace MP4Carver
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DataTable dtItem = (DataTable)(DGItems.DataSource);
-                string Filename, Path, Created, Modified, Is_Deleted;
-                string InsertItemQry = "";
-                int count = 0;
-                foreach (DataRow dr in dtItem.Rows)
+;
+           //generate file based on textbox file
+            string filepath = txtFile.Text;
+                
+            //create destination path
+                string destination = @"C:\\Users\User\mp4_carver";
+
+            //generate UUID
+               string newFileName = $@"{DateTime.Now.Ticks}.csv";
+                if (!Directory.Exists(destination))
                 {
-                    Filename = Convert.ToString(dr["Filename"]);
-                    Path = Convert.ToString(dr["Path"]);
-                    Created = Convert.ToString(dr["Created"]);
-                    Modified = Convert.ToString(dr["Modified"]);
-                    Is_Deleted = Convert.ToString(dr["Is_Deleted"]);
-                    if (Filename != "" && Path != "" && Created != "" && Modified !="" && Is_Deleted != "")
-                    {
-                        InsertItemQry += "Insert into disk_image(Filename,Path,Created,Modified,IsDeleted,EntryDate)Values('" + Filename + "','" + Path + "','" + Created + "','" + Modified + "','" + Is_Deleted + "' ,GETDATE()); ";
-                        count++;
-                    }
+                //create new directory if not exist
+                    Directory.CreateDirectory(@"C:\\Users\User\mp4_carver");
                 }
-                //if (InsertItemQry.Length > 5)
-               // {
-                   // bool isSuccess = DBAccess.ExecuteQuery(InsertItemQry);
-                    //if (isSuccess)
-                    //{
-                      //  MessageBox.Show("Item Imported Successfully, Total Imported Records : " + count + "", "GAUTAM POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //DGItems.DataSource = null;
-                    //}
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception " + ex);
-            }
+
+                //copy or save the data in other destination
+                File.Copy(filepath, destination + "/" + newFileName);
+
+
+          
+
+
+            MessageBox.Show("Files Transferred");
+
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -341,26 +366,38 @@ namespace MP4Carver
 
         }
 
-        public class Item
-        {
-            public string filename { get; set; }
 
-            public string Fullpath { get; set; }
-
-            public int Sizes { get; set; }
-
-            public string Created { get; set; }
-
-            public string Modified { get; set; }
-
-            public string Accessed { get; set; }
-
-            public bool IsDeleted { get; set; }
-        }
 
         private void loadImg_Click(object sender, EventArgs e)
         {
-            DGItems.DataSource = LoadCSV(txtFile.Text);
+
+            string rootFolder = @"C:\\Users\User\mp4_carver";
+
+            string filepath = txtFile.Text;
+
+            try
+            {
+                if(File.Exists(Path.Combine(rootFolder, filepath)))
+                {
+                    File.Delete(Path.Combine(rootFolder, filepath));
+                    MessageBox.Show("Files Deleted");
+                    //DGItems.ClearSelection();
+                    this.DGItems.DataSource = null;
+                    this.DGItems.Rows.Clear();
+
+                }
+                else MessageBox.Show("Files Unable to be Deleted");
+
+            }
+            catch(IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+            
+
+
         }
 
         private void nameData_Paint(object sender, PaintEventArgs e)
@@ -404,6 +441,12 @@ namespace MP4Carver
             }
             dbconnection.Close();
         }
+
+
+
+
+
     }
+   
 }
-    
+

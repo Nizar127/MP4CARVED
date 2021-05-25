@@ -29,6 +29,7 @@ namespace MP4Carver
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Profile));
             this.imageBox = new System.Windows.Forms.PictureBox();
             this.Main = new System.Windows.Forms.TabControl();
@@ -38,20 +39,12 @@ namespace MP4Carver
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OpenFolderBox = new System.Windows.Forms.Button();
             this.carveActivity = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.findFile = new System.Windows.Forms.Button();
             this.txtCarveFile = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.CarveID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.headerlength = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.caseNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.evidenceNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.unitDescColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.examinerColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsDeleted = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.carveFile = new System.Windows.Forms.Button();
             this.saveImgTab = new System.Windows.Forms.TabPage();
+            this.DeleteImg = new System.Windows.Forms.Button();
             this.DGItems = new System.Windows.Forms.DataGridView();
             this.txtFile = new System.Windows.Forms.TextBox();
             this.btnSaveData = new System.Windows.Forms.Button();
@@ -74,6 +67,9 @@ namespace MP4Carver
             this.button1 = new System.Windows.Forms.Button();
             this.About = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.viewedCarveFiled = new System.Windows.Forms.Panel();
             this.viewFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -85,12 +81,10 @@ namespace MP4Carver
             this.HistoryCarve = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.upload_img = new System.Windows.Forms.Button();
             this.usernameProfile = new System.Windows.Forms.Label();
-            this.loadImg = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.DGItem2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.Main.SuspendLayout();
             this.MainTab.SuspendLayout();
@@ -113,6 +107,8 @@ namespace MP4Carver
             this.About.SuspendLayout();
             this.panel6.SuspendLayout();
             this.historyTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // imageBox
@@ -197,7 +193,7 @@ namespace MP4Carver
             // 
             // carveActivity
             // 
-            this.carveActivity.Controls.Add(this.button3);
+            this.carveActivity.Controls.Add(this.findFile);
             this.carveActivity.Controls.Add(this.txtCarveFile);
             this.carveActivity.Controls.Add(this.panel7);
             this.carveActivity.Controls.Add(this.carveFile);
@@ -210,17 +206,18 @@ namespace MP4Carver
             this.carveActivity.UseVisualStyleBackColor = true;
             this.carveActivity.Click += new System.EventHandler(this.carveActivity_Click);
             // 
-            // button3
+            // findFile
             // 
-            this.button3.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(452, 42);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 33);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Find File";
-            this.button3.UseVisualStyleBackColor = false;
+            this.findFile.BackColor = System.Drawing.Color.MidnightBlue;
+            this.findFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findFile.ForeColor = System.Drawing.SystemColors.Control;
+            this.findFile.Location = new System.Drawing.Point(452, 42);
+            this.findFile.Name = "findFile";
+            this.findFile.Size = new System.Drawing.Size(83, 33);
+            this.findFile.TabIndex = 9;
+            this.findFile.Text = "Find File";
+            this.findFile.UseVisualStyleBackColor = false;
+            this.findFile.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtCarveFile
             // 
@@ -233,62 +230,11 @@ namespace MP4Carver
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel7.Controls.Add(this.listView2);
+            this.panel7.Controls.Add(this.DGItem2);
             this.panel7.Location = new System.Drawing.Point(6, 78);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(560, 308);
             this.panel7.TabIndex = 3;
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CarveID,
-            this.columnFileName,
-            this.headerlength,
-            this.caseNum,
-            this.evidenceNum,
-            this.unitDescColumn,
-            this.examinerColumn,
-            this.IsDeleted});
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 3);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(554, 302);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
-            // 
-            // CarveID
-            // 
-            this.CarveID.Text = "ID";
-            // 
-            // columnFileName
-            // 
-            this.columnFileName.Text = "File Name";
-            this.columnFileName.Width = 200;
-            // 
-            // headerlength
-            // 
-            this.headerlength.Text = "Header-Length";
-            this.headerlength.Width = 124;
-            // 
-            // caseNum
-            // 
-            this.caseNum.Text = "case Number";
-            this.caseNum.Width = 83;
-            // 
-            // evidenceNum
-            // 
-            this.evidenceNum.Text = "Evidence Number";
-            // 
-            // unitDescColumn
-            // 
-            this.unitDescColumn.Text = "Unit Description";
-            // 
-            // examinerColumn
-            // 
-            this.examinerColumn.Text = "Examiner";
             // 
             // carveFile
             // 
@@ -305,7 +251,7 @@ namespace MP4Carver
             // 
             // saveImgTab
             // 
-            this.saveImgTab.Controls.Add(this.loadImg);
+            this.saveImgTab.Controls.Add(this.DeleteImg);
             this.saveImgTab.Controls.Add(this.DGItems);
             this.saveImgTab.Controls.Add(this.txtFile);
             this.saveImgTab.Controls.Add(this.btnSaveData);
@@ -316,6 +262,19 @@ namespace MP4Carver
             this.saveImgTab.TabIndex = 5;
             this.saveImgTab.Text = "Save MP4 Image";
             this.saveImgTab.UseVisualStyleBackColor = true;
+            // 
+            // DeleteImg
+            // 
+            this.DeleteImg.BackColor = System.Drawing.Color.Red;
+            this.DeleteImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteImg.ForeColor = System.Drawing.SystemColors.Control;
+            this.DeleteImg.Location = new System.Drawing.Point(317, 448);
+            this.DeleteImg.Name = "DeleteImg";
+            this.DeleteImg.Size = new System.Drawing.Size(141, 39);
+            this.DeleteImg.TabIndex = 8;
+            this.DeleteImg.Text = "Delete MP4 Image";
+            this.DeleteImg.UseVisualStyleBackColor = false;
+            this.DeleteImg.Click += new System.EventHandler(this.loadImg_Click);
             // 
             // DGItems
             // 
@@ -351,7 +310,7 @@ namespace MP4Carver
             this.btnSave.BackColor = System.Drawing.Color.Blue;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(200, 448);
+            this.btnSave.Location = new System.Drawing.Point(136, 448);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(157, 39);
             this.btnSave.TabIndex = 4;
@@ -565,6 +524,29 @@ namespace MP4Carver
             this.panel6.Size = new System.Drawing.Size(429, 391);
             this.panel6.TabIndex = 14;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(161, 122);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(237, 20);
+            this.textBox3.TabIndex = 21;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(161, 76);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(237, 20);
+            this.textBox2.TabIndex = 20;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(161, 28);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.TabIndex = 19;
+            // 
             // viewedCarveFiled
             // 
             this.viewedCarveFiled.Location = new System.Drawing.Point(3, 217);
@@ -698,41 +680,13 @@ namespace MP4Carver
             this.usernameProfile.TabIndex = 0;
             this.usernameProfile.Text = "UsernameProfile";
             // 
-            // loadImg
+            // DGItem2
             // 
-            this.loadImg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.loadImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadImg.ForeColor = System.Drawing.SystemColors.Control;
-            this.loadImg.Location = new System.Drawing.Point(473, 15);
-            this.loadImg.Name = "loadImg";
-            this.loadImg.Size = new System.Drawing.Size(84, 39);
-            this.loadImg.TabIndex = 8;
-            this.loadImg.Text = "Load ";
-            this.loadImg.UseVisualStyleBackColor = false;
-            this.loadImg.Click += new System.EventHandler(this.loadImg_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(161, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 20);
-            this.textBox1.TabIndex = 19;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(161, 76);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(237, 20);
-            this.textBox2.TabIndex = 20;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(161, 122);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(237, 20);
-            this.textBox3.TabIndex = 21;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.DGItem2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGItem2.Location = new System.Drawing.Point(0, 0);
+            this.DGItem2.Name = "DGItem2";
+            this.DGItem2.Size = new System.Drawing.Size(557, 305);
+            this.DGItem2.TabIndex = 0;
             // 
             // Profile
             // 
@@ -776,6 +730,8 @@ namespace MP4Carver
             this.panel6.PerformLayout();
             this.historyTab.ResumeLayout(false);
             this.historyTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGItem2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,23 +782,23 @@ namespace MP4Carver
         private System.Windows.Forms.TabPage saveImgTab;
         private System.Windows.Forms.Button btnSaveData;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader CarveID;
-        private System.Windows.Forms.ColumnHeader columnFileName;
-        private System.Windows.Forms.ColumnHeader headerlength;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button findFile;
         private System.Windows.Forms.TextBox txtCarveFile;
-        private System.Windows.Forms.ColumnHeader caseNum;
-        private System.Windows.Forms.ColumnHeader evidenceNum;
-        private System.Windows.Forms.ColumnHeader unitDescColumn;
-        private System.Windows.Forms.ColumnHeader examinerColumn;
         private System.Windows.Forms.Panel viewedCarveFiled;
         private System.Windows.Forms.TextBox txtFile;
-        private System.Windows.Forms.ColumnHeader IsDeleted;
         private System.Windows.Forms.DataGridView DGItems;
-        private System.Windows.Forms.Button loadImg;
+        private System.Windows.Forms.Button DeleteImg;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn filenameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullpathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sizesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accessedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isDeletedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.DataGridView DGItem2;
     }
 }
