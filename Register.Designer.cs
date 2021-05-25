@@ -46,10 +46,9 @@ namespace MP4Carver
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(68, 266);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(665, 31);
+            this.txtPassword.Size = new System.Drawing.Size(665, 30);
             this.txtPassword.TabIndex = 43;
             this.txtPassword.Text = "Password";
             this.txtPassword.UseSystemPasswordChar = true;
@@ -134,10 +133,9 @@ namespace MP4Carver
             this.txtConfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmPass.Location = new System.Drawing.Point(68, 320);
             this.txtConfirmPass.Margin = new System.Windows.Forms.Padding(2);
-            this.txtConfirmPass.Multiline = true;
             this.txtConfirmPass.Name = "txtConfirmPass";
             this.txtConfirmPass.PasswordChar = '*';
-            this.txtConfirmPass.Size = new System.Drawing.Size(665, 31);
+            this.txtConfirmPass.Size = new System.Drawing.Size(665, 30);
             this.txtConfirmPass.TabIndex = 35;
             this.txtConfirmPass.Text = "Confirm Password";
             this.txtConfirmPass.UseSystemPasswordChar = true;

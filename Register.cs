@@ -97,7 +97,7 @@ namespace MP4Carver
             sw.WriteLine(encpass);
             sw.Close();
 
-            MessageBox.Show("User {0} was successfully created.", txtUsername.Text);
+            MessageBox.Show("User was successfully created.", txtUsername.Text);
             this.Close();
         }
 
@@ -119,6 +119,9 @@ namespace MP4Carver
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
+            TextBox mytextPass = new TextBox();
+            mytextPass.UseSystemPasswordChar = true;
+            this.Controls.Add(mytextPass);
             //txtPassword_cipher.Text = obj_system.encrypt(txtPassword.clear_text);
         }
 

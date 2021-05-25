@@ -45,7 +45,7 @@ namespace MP4Carver
                 {
                     string dir = txtUser.Text;
                     if (!Directory.Exists("data\\" + dir))
-                        MessageBox.Show("User {0} was not found!", dir);
+                        MessageBox.Show("User was not found!", dir);
                     else
                     {
                         var sr = new StreamReader("data\\" + dir + "\\data.ls");
@@ -59,7 +59,10 @@ namespace MP4Carver
 
                         if (decusr == txtUser.Text && decpass == txtPassword.Text)
                         {
-                            MessageBox.Show("Welcome {0} to the private area!", decusr);
+                            MessageBox.Show("Welcome  to the private area!", decusr);
+                            Profile from2 = new Profile();
+                            from2.Show();
+                            this.Hide();
                         }
                         else
                         {
@@ -70,21 +73,21 @@ namespace MP4Carver
                 }
 
 
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        MessageBox.Show("Login to MP4Carver");
-                        Profile from2 = new Profile();
-                        from2.Show();
-                        this.Hide();
-                    }
+              //  if (reader.HasRows)
+               // {
+                 //   while (reader.Read())
+                   // {
+                     //   MessageBox.Show("Login to MP4Carver");
+                       // Profile from2 = new Profile();
+                       // from2.Show();
+                       // this.Hide();
+                   // }
 
-                }
-                else
-                {
-                    MessageBox.Show("Please try again");
-                }
+                //}
+                //else
+               // {
+                 //   MessageBox.Show("Please try again");
+                //}
             }
             catch(Exception ex)
             {
@@ -107,6 +110,11 @@ namespace MP4Carver
         {
             Register register = new Register();
             register.Show();
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
