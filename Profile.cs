@@ -36,24 +36,24 @@ namespace MP4Carver
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddImage btnAddImg = new AddImage();
-            btnAddImg.Show();
+            //AddImage btnAddImg = new AddImage();
+            //btnAddImg.Show();
             //saveImg();
-            // String imageLocation = "";
-            //try
-            //{
-            //  OpenFileDialog dialog = new OpenFileDialog();
-            // dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
-            //  if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //  {
-            //      imageLocation = dialog.FileName;
-            //     imageBox.ImageLocation = imageLocation;
-            //  }
-            // }
-            // catch (Exception)
-            // {
-            //   MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            // }
+            String imageLocation = "";
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+                    imageBox.ImageLocation = imageLocation;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
@@ -123,12 +123,53 @@ namespace MP4Carver
             dv.Filter = filter;
             dv.ShowDialog();
             txtCarveFile.Text = dv.FileName;
-            BindDataIntoCSV(txtCarveFile.Text);
+            //BindDataIntoCSV(txtCarveFile.Text);
+            BindTheDataCSV(txtCarveFile.Text);
 
         }
 
 
         private void BindDataIntoCSV(string filepath)
+        {
+            DataTable dt = new DataTable();
+            string[] lines = System.IO.File.ReadAllLines(filepath);
+            if (lines.Length > 0)
+            {
+                string firstline = lines[0];
+                string[] headerlabels = firstline.Split('\t');
+                foreach (string headerword in headerlabels)
+                {
+                    dt.Columns.Add(new DataColumn(headerword));
+                }
+
+                for (int r = 1; r < lines.Length; r++)
+                {
+                    string[] DataWords = lines[r].Split('\t');
+                    DataRow dr = dt.NewRow();
+                    int columnindex = 0;
+                    foreach (string headerword in headerlabels)
+                    {
+                        dr[headerword] = DataWords[columnindex++];
+                        
+                    }
+                    dt.Rows.Add(dr);
+                }
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                DGItem2.DataSource = dt;
+                //if(dt.Columns = "Filename")
+                //DataView dv;
+                //dv = new DataView(dt, "Filename LIKE '%!6.MP4'", "Filename Desc", DataViewRowState.CurrentRows);
+                //DGItem2.DataSource = dv.ToTable();
+                
+               
+            }
+
+        }
+
+        private void BindTheDataCSV(string filepath)
         {
             DataTable dt = new DataTable();
             string[] lines = System.IO.File.ReadAllLines(filepath);
@@ -156,11 +197,11 @@ namespace MP4Carver
 
             if (dt.Rows.Count > 0)
             {
-                DGItem2.DataSource = dt;
-                //if(dt.Columns = "Filename")
+                //.DataSource = dt;
+                DGItem3.DataSource = dt;
                 DataView dv;
-                dv = new DataView(dt, "Filename = '%.mp4%'", "Filename Desc", DataViewRowState.CurrentRows);
-               
+                dv = new DataView(dt, "Filename LIKE '%.mp4'", "Filename Desc", DataViewRowState.CurrentRows);
+                DGItem3.DataSource = dv.ToTable();
             }
 
         }
@@ -169,9 +210,10 @@ namespace MP4Carver
         {
 
             //Console.WriteLine(string.Join("", readRecord(".mp4", "yes",9)));
-            MessageBox.Show(string.Join("", readRecord("yes", txtCarveFile.Text,7)));
+            MessageBox.Show(string.Join("",readRecord("yes", txtCarveFile.Text,7)));
 
-          
+           
+
 
         }
 
@@ -348,10 +390,6 @@ namespace MP4Carver
                 //copy or save the data in other destination
                 File.Copy(filepath, destination + "/" + newFileName);
 
-
-          
-
-
             MessageBox.Show("Files Transferred");
 
         }
@@ -394,9 +432,6 @@ namespace MP4Carver
                 MessageBox.Show(ex.Message);
 
             }
-
-            
-
 
         }
 
@@ -442,10 +477,23 @@ namespace MP4Carver
             dbconnection.Close();
         }
 
+        private void testMP4_Click(object sender, EventArgs e)
+        {
+            Upload_file uploadFile = new Upload_file();
+            uploadFile.Show();
+        }
 
+        private void mp4btn_Click(object sender, EventArgs e)
+        {
+            Upload_file uploadFile = new Upload_file();
+            uploadFile.Show();
+        }
 
-
-
+        private void mp4Btn_Click_1(object sender, EventArgs e)
+        {
+            Upload_file vidUpload = new Upload_file();
+            vidUpload.Show();
+        }
     }
    
 }

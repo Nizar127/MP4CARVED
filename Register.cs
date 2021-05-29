@@ -40,18 +40,53 @@ namespace MP4Carver
 
         public void UserRegister()
         {
-            string query = "INSERT INTO users(name,password,matric_no) VALUES ('" + txtUsername.Text + "', '" + txtPassword.Text + "', '" + txtMatricNo.Text + "') ";
-           // string query = "INSERT INTO users(name,password,matric_no) VALUES ('try', 'je0121', '0111') ";
+            //string query = "INSERT INTO users(name,password,matric_no) VALUES ('" + txtUsername.Text + "', '" + txtPassword.Text + "', '" + txtMatricNo.Text + "') ";
+           //string query = "INSERT INTO users(name,password,matric_no) VALUES ('try', 'je0121', '0111') ";
 
             //connection mysql XAMPP
-            MySqlConnection dbconnection = new MySqlConnection(conn);
-            MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
-            commandDB.CommandTimeout = 60;
+            //MySqlConnection dbconnection = new MySqlConnection(conn);
+           // MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
+           // commandDB.CommandTimeout = 60;
             //MySqlDataReader reader;
 
             try
             {
+
+
+                if (string.IsNullOrEmpty(txtUsername.Text) || (string.IsNullOrEmpty(txtPassword.Text)) || (string.IsNullOrEmpty(txtMatricNo.Text)))
+                {
+                    MessageBox.Show("Please Fill Username and Password and Matric No", "Error");
+                }
+
+                if (string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    MessageBox.Show("Please enter your password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string dir = txtUsername.Text;
+                Directory.CreateDirectory("data\\" + dir);
+                var sw = new StreamWriter("data\\" + dir + "\\data.ls");
+
+                string encusr = AesCryp.Encrypt(txtUsername.Text);
+                string encpass = AesCryp.Encrypt(txtPassword.Text);
+
+                sw.WriteLine(encusr);
+                sw.WriteLine(encpass);
+                sw.Close();
+
+
+                string query = "INSERT INTO users(name,password,matric_no) VALUES ('" + encusr + "', '" + encpass + "', '" + txtMatricNo.Text + "') ";
+                //string query = "INSERT INTO users(name,password,matric_no) VALUES ('try', 'je0121', '0111') ";
+
+                //connection mysql XAMPP
+                MySqlConnection dbconnection = new MySqlConnection(conn);
                 dbconnection.Open();
+                MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
+                commandDB.CommandTimeout = 60;
+                commandDB.ExecuteNonQuery();
+                //MySqlDataReader reader;
+               
        
                 
                     MessageBox.Show("Welcome to MP4Carver");
@@ -63,39 +98,13 @@ namespace MP4Carver
                         // this.Hide();
                     
 
-                
-               // else
-                //{
-                   // MessageBox.Show("Please try again");
-               // }
+            
                 dbconnection.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            if (string.IsNullOrEmpty(txtUsername.Text) || (string.IsNullOrEmpty(txtPassword.Text)) || (string.IsNullOrEmpty(txtMatricNo.Text)))
-            {
-                MessageBox.Show("Please Fill Username and Password and Matric No", "Error");
-            }
-
-            if (string.IsNullOrEmpty(txtPassword.Text))
-            {
-                MessageBox.Show("Please enter your password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string dir = txtUsername.Text;
-            Directory.CreateDirectory("data\\" + dir);
-            var sw = new StreamWriter("data\\" + dir + "\\data.ls");
-
-            string encusr = AesCryp.Encrypt(txtUsername.Text);
-            string encpass = AesCryp.Encrypt(txtPassword.Text);
-
-            sw.WriteLine(encusr);
-            sw.WriteLine(encpass);
-            sw.Close();
 
             MessageBox.Show("User was successfully created.", txtUsername.Text);
             this.Close();

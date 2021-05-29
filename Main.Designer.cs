@@ -36,8 +36,6 @@ namespace MP4Carver
             this.label4 = new System.Windows.Forms.Label();
             this.logBtn = new System.Windows.Forms.Button();
             this.profileTest = new System.Windows.Forms.Button();
-            this.upload_vid = new System.Windows.Forms.Button();
-            this.carveFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -127,50 +125,12 @@ namespace MP4Carver
             this.profileTest.UseVisualStyleBackColor = false;
             this.profileTest.Click += new System.EventHandler(this.button1_Click);
             // 
-            // upload_vid
-            // 
-            this.upload_vid.BackColor = System.Drawing.Color.DarkOrange;
-            this.upload_vid.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.upload_vid.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.upload_vid.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.upload_vid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.upload_vid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upload_vid.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.upload_vid.Location = new System.Drawing.Point(11, 356);
-            this.upload_vid.Margin = new System.Windows.Forms.Padding(2);
-            this.upload_vid.Name = "upload_vid";
-            this.upload_vid.Size = new System.Drawing.Size(216, 34);
-            this.upload_vid.TabIndex = 54;
-            this.upload_vid.Text = "Upload Video";
-            this.upload_vid.UseVisualStyleBackColor = false;
-            this.upload_vid.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // carveFile
-            // 
-            this.carveFile.BackColor = System.Drawing.Color.SeaGreen;
-            this.carveFile.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.carveFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.carveFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.carveFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.carveFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carveFile.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.carveFile.Location = new System.Drawing.Point(11, 318);
-            this.carveFile.Margin = new System.Windows.Forms.Padding(2);
-            this.carveFile.Name = "carveFile";
-            this.carveFile.Size = new System.Drawing.Size(216, 34);
-            this.carveFile.TabIndex = 55;
-            this.carveFile.Text = "Carve File";
-            this.carveFile.UseVisualStyleBackColor = false;
-            this.carveFile.Click += new System.EventHandler(this.carveFile_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.carveFile);
-            this.Controls.Add(this.upload_vid);
             this.Controls.Add(this.profileTest);
             this.Controls.Add(this.logBtn);
             this.Controls.Add(this.label4);
@@ -192,7 +152,5 @@ namespace MP4Carver
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button logBtn;
         private System.Windows.Forms.Button profileTest;
-        private System.Windows.Forms.Button upload_vid;
-        private System.Windows.Forms.Button carveFile;
     }
 }

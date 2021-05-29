@@ -25,18 +25,15 @@ namespace MP4Carver
 
         public void userLogin()
         {
-            string query = "SELECT `name`,`password` FROM users WHERE `name`='" + txtUser.Text + "' AND `password`='" + txtPassword.Text + "' ";
+            //string query = "SELECT `name`,`password` FROM users WHERE `name`='" + txtUser.Text + "' AND `password`='" + txtPassword.Text + "' ";
             //connection mysql XAMPP
-            MySqlConnection dbconnection = new MySqlConnection(conn);
-            MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
-            commandDB.CommandTimeout = 60;
-            MySqlDataReader reader;
+            //MySqlConnection dbconnection = new MySqlConnection(conn);
+            //MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
+            //commandDB.CommandTimeout = 60;
+            //MySqlDataReader reader;
 
             try
             {
-                dbconnection.Open();
-                reader = commandDB.ExecuteReader();
-
                 if (txtUser.Text.Length < 3 || txtPassword.Text.Length < 5)
                 {
                     MessageBox.Show("Username or Password is invaled or too short!");
@@ -59,6 +56,15 @@ namespace MP4Carver
 
                         if (decusr == txtUser.Text && decpass == txtPassword.Text)
                         {
+
+                            string query = "SELECT `name`,`password` FROM users WHERE `name`='" + decusr + "' AND `password`='" + decpass + "' ";
+                            //connection mysql XAMPP
+                            MySqlConnection dbconnection = new MySqlConnection(conn);
+                            MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
+                            commandDB.CommandTimeout = 60;
+                            MySqlDataReader reader;
+                            dbconnection.Open();
+                            reader = commandDB.ExecuteReader();
                             MessageBox.Show("Welcome  to the private area!", decusr);
                             Profile from2 = new Profile();
                             from2.Show();
@@ -71,6 +77,10 @@ namespace MP4Carver
 
                     }
                 }
+
+                
+
+
 
 
               //  if (reader.HasRows)
