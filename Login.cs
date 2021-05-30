@@ -25,12 +25,6 @@ namespace MP4Carver
 
         public void userLogin()
         {
-            //string query = "SELECT `name`,`password` FROM users WHERE `name`='" + txtUser.Text + "' AND `password`='" + txtPassword.Text + "' ";
-            //connection mysql XAMPP
-            //MySqlConnection dbconnection = new MySqlConnection(conn);
-            //MySqlCommand commandDB = new MySqlCommand(query, dbconnection);
-            //commandDB.CommandTimeout = 60;
-            //MySqlDataReader reader;
 
             try
             {
@@ -65,7 +59,7 @@ namespace MP4Carver
                             MySqlDataReader reader;
                             dbconnection.Open();
                             reader = commandDB.ExecuteReader();
-                            MessageBox.Show("Welcome  to the private area!", decusr);
+                            MessageBox.Show("Welcome  to the MP4 Carver!", decusr);
                             Profile from2 = new Profile();
                             from2.Show();
                             this.Hide();
@@ -77,27 +71,6 @@ namespace MP4Carver
 
                     }
                 }
-
-                
-
-
-
-
-              //  if (reader.HasRows)
-               // {
-                 //   while (reader.Read())
-                   // {
-                     //   MessageBox.Show("Login to MP4Carver");
-                       // Profile from2 = new Profile();
-                       // from2.Show();
-                       // this.Hide();
-                   // }
-
-                //}
-                //else
-               // {
-                 //   MessageBox.Show("Please try again");
-                //}
             }
             catch(Exception ex)
             {

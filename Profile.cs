@@ -36,9 +36,7 @@ namespace MP4Carver
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //AddImage btnAddImg = new AddImage();
-            //btnAddImg.Show();
-            //saveImg();
+
             String imageLocation = "";
             try
             {
@@ -125,47 +123,6 @@ namespace MP4Carver
             txtCarveFile.Text = dv.FileName;
             //BindDataIntoCSV(txtCarveFile.Text);
             BindTheDataCSV(txtCarveFile.Text);
-
-        }
-
-
-        private void BindDataIntoCSV(string filepath)
-        {
-            DataTable dt = new DataTable();
-            string[] lines = System.IO.File.ReadAllLines(filepath);
-            if (lines.Length > 0)
-            {
-                string firstline = lines[0];
-                string[] headerlabels = firstline.Split('\t');
-                foreach (string headerword in headerlabels)
-                {
-                    dt.Columns.Add(new DataColumn(headerword));
-                }
-
-                for (int r = 1; r < lines.Length; r++)
-                {
-                    string[] DataWords = lines[r].Split('\t');
-                    DataRow dr = dt.NewRow();
-                    int columnindex = 0;
-                    foreach (string headerword in headerlabels)
-                    {
-                        dr[headerword] = DataWords[columnindex++];
-                        
-                    }
-                    dt.Rows.Add(dr);
-                }
-            }
-
-            if (dt.Rows.Count > 0)
-            {
-                DGItem2.DataSource = dt;
-                //if(dt.Columns = "Filename")
-                //DataView dv;
-                //dv = new DataView(dt, "Filename LIKE '%!6.MP4'", "Filename Desc", DataViewRowState.CurrentRows);
-                //DGItem2.DataSource = dv.ToTable();
-                
-               
-            }
 
         }
 
@@ -306,49 +263,6 @@ namespace MP4Carver
 
         }
 
-        public static DataTable GetDataTabletFromCSVFile(string csv_file_path)
-        {
-            DataTable csvData = new DataTable();
-            try
-            {
-                if (csv_file_path.EndsWith(".csv"))
-                {
-                    using (Microsoft.VisualBasic.FileIO.TextFieldParser csvReader = new Microsoft.VisualBasic.FileIO.TextFieldParser(csv_file_path))
-                    {
-                        csvReader.SetDelimiters(new string[] { "," });
-                        csvReader.HasFieldsEnclosedInQuotes = true;
-                        //read column
-                        string[] colFields = csvReader.ReadFields();
-                        foreach (string column in colFields)
-                        {
-                            DataColumn datecolumn = new DataColumn(column);
-                            datecolumn.AllowDBNull = true;
-                            csvData.Columns.Add(datecolumn);
-                        }
-                        while (!csvReader.EndOfData)
-                        {
-                            string[] fieldData = csvReader.ReadFields();
-                            for (int i = 0; i < fieldData.Length; i++)
-                            {
-                                if (fieldData[i] == "")
-                                {
-                                    fieldData[i] = null;
-                                }
-                            }
-                            csvData.Rows.Add(fieldData);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exce " + ex);
-            }
-            return csvData;
-        }
-
-
-
         private void viewFile_Click(object sender, EventArgs e)
         {
 
@@ -409,6 +323,8 @@ namespace MP4Carver
         private void loadImg_Click(object sender, EventArgs e)
         {
 
+            //delete file from filesystem
+
             string rootFolder = @"C:\\Users\User\mp4_carver";
 
             string filepath = txtFile.Text;
@@ -419,7 +335,6 @@ namespace MP4Carver
                 {
                     File.Delete(Path.Combine(rootFolder, filepath));
                     MessageBox.Show("Files Deleted");
-                    //DGItems.ClearSelection();
                     this.DGItems.DataSource = null;
                     this.DGItems.Rows.Clear();
 
@@ -437,44 +352,17 @@ namespace MP4Carver
 
         private void nameData_Paint(object sender, PaintEventArgs e)
         {
-            MySqlConnection dbconnection = new MySqlConnection(conn);
-            dbconnection.Open();
-            string nameQuery = "SELECT name FROM user";
-            MySqlCommand commandDB = new MySqlCommand(nameQuery, dbconnection);
-            MySqlDataReader nameUsr = commandDB.ExecuteReader();
-            if (nameUsr.Read())
-            {
-                textBox1.Text = (nameUsr["name"].ToString());
-            }
-            dbconnection.Close();
+           
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            MySqlConnection dbconnection = new MySqlConnection(conn);
-            dbconnection.Open();
-            string nameQuery = "SELECT matric_no FROM user";
-            MySqlCommand commandDB = new MySqlCommand(nameQuery, dbconnection);
-            MySqlDataReader nameUsr = commandDB.ExecuteReader();
-            if (nameUsr.Read())
-            {
-                textBox2.Text = (nameUsr["matric_no"].ToString());
-            }
-            dbconnection.Close();
+
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            MySqlConnection dbconnection = new MySqlConnection(conn);
-            dbconnection.Open();
-            string nameQuery = "SELECT carving_file_data FROM user";
-            MySqlCommand commandDB = new MySqlCommand(nameQuery, dbconnection);
-            MySqlDataReader nameUsr = commandDB.ExecuteReader();
-            if (nameUsr.Read())
-            {
-                textBox3.Text = (nameUsr["carving_file_name"].ToString());
-            }
-            dbconnection.Close();
+
         }
 
         private void testMP4_Click(object sender, EventArgs e)
@@ -494,6 +382,64 @@ namespace MP4Carver
             Upload_file vidUpload = new Upload_file();
             vidUpload.Show();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void DisplayName_Click(object sender, EventArgs e)
+        {
+
+            MySqlConnection dbconnection = new MySqlConnection(conn);
+            dbconnection.Open();
+            if (idUsr.Text != "")
+            {
+                string nameQuery = "SELECT `name`, `matric_no` FROM users WHERE id =@id";
+                MySqlCommand commandDB = new MySqlCommand(nameQuery, dbconnection);
+                commandDB.Parameters.AddWithValue("@id", int.Parse(idUsr.Text));
+                MySqlDataReader reader;
+                reader = commandDB.ExecuteReader();
+                while (reader.Read())
+                {
+                    MessageBox.Show("working");
+                    nameUsr.Text = reader.GetValue(0).ToString();
+                    matricNoUsr.Text = reader.GetValue(1).ToString();
+                }
+            }
+
+            dbconnection.Close();
+        }
+
+        private void matricNo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usernameProfile_Click(object sender, EventArgs e)
+        {
+            MySqlConnection dbconnection = new MySqlConnection(conn);
+            dbconnection.Open();
+            string nameQuery = "SELECT `name` FROM users WHERE id =@id";
+            MySqlCommand commandDB = new MySqlCommand(nameQuery, dbconnection);
+            //commandDB.Parameters.AddWithValue("@id", int.Parse(idUsr.Text));
+            MySqlDataReader reader;
+            reader = commandDB.ExecuteReader();
+            if(reader.Read())
+            {
+                usernameprofile.Text = reader["name"].ToString();
+               
+            }
+            else
+            {
+                usernameprofile.Text = "Record Unknown";
+            }
+           
+        }
+
+     
     }
    
 }

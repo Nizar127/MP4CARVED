@@ -128,10 +128,7 @@ namespace MP4Carver
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            TextBox mytextPass = new TextBox();
-            mytextPass.UseSystemPasswordChar = true;
-            this.Controls.Add(mytextPass);
-            //txtPassword_cipher.Text = obj_system.encrypt(txtPassword.clear_text);
+            
         }
 
         private void label2_Click(object sender, EventArgs e)

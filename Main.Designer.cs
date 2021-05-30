@@ -35,7 +35,6 @@ namespace MP4Carver
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.logBtn = new System.Windows.Forms.Button();
-            this.profileTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -107,31 +106,12 @@ namespace MP4Carver
             this.logBtn.UseVisualStyleBackColor = false;
             this.logBtn.Click += new System.EventHandler(this.logBtn_Click);
             // 
-            // profileTest
-            // 
-            this.profileTest.BackColor = System.Drawing.Color.DarkCyan;
-            this.profileTest.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.profileTest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.profileTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.profileTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.profileTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profileTest.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.profileTest.Location = new System.Drawing.Point(11, 395);
-            this.profileTest.Margin = new System.Windows.Forms.Padding(2);
-            this.profileTest.Name = "profileTest";
-            this.profileTest.Size = new System.Drawing.Size(216, 34);
-            this.profileTest.TabIndex = 53;
-            this.profileTest.Text = "Profile";
-            this.profileTest.UseVisualStyleBackColor = false;
-            this.profileTest.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.profileTest);
             this.Controls.Add(this.logBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -151,6 +131,5 @@ namespace MP4Carver
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button logBtn;
-        private System.Windows.Forms.Button profileTest;
     }
 }
