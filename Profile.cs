@@ -13,6 +13,7 @@ using MySql.Data.MySqlClient;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using CsvHelper;
+using System.Runtime.InteropServices;
 
 
 //using WindowsFormsApplication1.DAL;
@@ -83,11 +84,6 @@ namespace MP4Carver
 
         }
 
-
-
-
-
-
         private void imageBox_Click(object sender, EventArgs e)
         {
 
@@ -122,9 +118,29 @@ namespace MP4Carver
             dv.ShowDialog();
             txtCarveFile.Text = dv.FileName;
             //BindDataIntoCSV(txtCarveFile.Text);
-            BindTheDataCSV(txtCarveFile.Text);
+           // BindTheDataCSV(txtCarveFile.Text);
 
         }
+
+        public class BindRawData
+        {
+
+            [DllImport("CarveTheFile.C", EntryPoint = "carveFile")]
+
+            static extern void carveFile(string message);
+
+            [DllImport("CarveTheFile.C", EntryPoint = "WriteToBinary")]
+
+            static extern void WriteToBinary(string message);
+
+            public static void Main(string[] args)
+            {
+                carveFile("Carving Successful"))
+                WriteToBinary("File Created");
+            }
+        }
+
+
 
         private void BindTheDataCSV(string filepath)
         {
@@ -165,9 +181,16 @@ namespace MP4Carver
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string path = @"C:\ProgramData\File.mp4";
+           
+            FileStream fStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            byte[] content = new byte[16 * 1024];
+            //fStream.Write(content, 0, content.Length);
+            fStream.Write(content, 0, content.Length);
+            fStream.Close();
 
             //Console.WriteLine(string.Join("", readRecord(".mp4", "yes",9)));
-            MessageBox.Show(string.Join("",readRecord("yes", txtCarveFile.Text,7)));
+            //MessageBox.Show(string.Join("",readRecord("yes", txtCarveFile.Text,7)));
 
            
 
@@ -224,10 +247,51 @@ namespace MP4Carver
             dg.Filter = filter;
             dg.ShowDialog();
             txtFile.Text = dg.FileName;
-            BindDataCSV(txtFile.Text);
+            //BindDataCSV(txtFile.Text);
+            //BindRawData(txtFile.Text);
 
 
 
+        }
+
+        private void BindRawdData(string filepath)
+        {
+            FileStream fs = new FileStream(filepath, FileMode.Open);
+            BinaryReader bs = new BinaryReader(fs);
+            //BinaryReader binReader = new BinaryReader(File.Open(filepath, FileMode.Open));
+
+            
+
+            //Encoding ascii = Encoding.ASCII;
+            //BinaryWriter bwEncoder = new BinaryWriter(new FileStream(filepath, FileMode.Create), ascii);
+            //DataTable dt = new DataTable();
+            //string[] lines = System.IO.File.ReadAllLines(filepath);
+            //if (lines.Length > 0)
+            //{
+            //    string firstline = lines[0];
+            //    string[] headerlabels = firstline.Split('\t');
+            //    foreach (string headerword in headerlabels)
+            //    {
+            //        dt.Columns.Add(new DataColumn(headerword));
+            //    }
+
+            //    for (int r = 1; r < lines.Length; r++)
+            //    {
+            //        string[] DataWords = lines[r].Split('\t');
+            //        DataRow dr = dt.NewRow();
+            //        int columnindex = 0;
+            //        foreach (string headerword in headerlabels)
+            //        {
+            //            dr[headerword] = DataWords[columnindex++];
+            //        }
+            //        dt.Rows.Add(dr);
+            //    }
+            //}
+
+            //if (dt.Rows.Count > 0)
+            //{
+            //    DGItems.DataSource = dt;
+            //}
         }
 
         private void BindDataCSV(string filepath)
@@ -294,7 +358,7 @@ namespace MP4Carver
                 string destination = @"C:\\Users\User\mp4_carver";
 
             //generate UUID
-               string newFileName = $@"{DateTime.Now.Ticks}.csv";
+               string newFileName = $@"{DateTime.Now.Ticks}.raw";
                 if (!Directory.Exists(destination))
                 {
                 //create new directory if not exist
@@ -439,7 +503,10 @@ namespace MP4Carver
            
         }
 
-     
+        private void DGItem3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
    
 }

@@ -92,6 +92,7 @@
     <Compile Include="AddImage.Designer.cs">
       <DependentUpon>AddImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="CarveFile.cs" />
     <Compile Include="carve_file.cs">
       <SubType>Form</SubType>
     </Compile>

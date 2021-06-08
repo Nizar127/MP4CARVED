@@ -5,16 +5,45 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP4Carver", "MP4Carver.csproj", "{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cfile.dll", "cfile.dll", "{37C64770-81AE-41FF-BEAF-53DE20BEFF39}"
+	ProjectSection(SolutionItems) = preProject
+		CarveTheFile.c = CarveTheFile.c
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Debug|x86.Build.0 = Debug|Any CPU
 		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|ARM.Build.0 = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|ARM64.Build.0 = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|x64.Build.0 = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{A3F4718A-F6EF-442B-99EF-6EA92A8EE8ED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
