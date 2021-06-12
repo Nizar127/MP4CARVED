@@ -60,6 +60,7 @@ namespace MP4Carver
             this.upload_img = new System.Windows.Forms.Button();
             this.DGItem2 = new System.Windows.Forms.DataGridView();
             this.usernameprofile = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.Main.SuspendLayout();
             this.carveActivity.SuspendLayout();
@@ -99,6 +100,7 @@ namespace MP4Carver
             // 
             // carveActivity
             // 
+            this.carveActivity.Controls.Add(this.button1);
             this.carveActivity.Controls.Add(this.DGItem3);
             this.carveActivity.Controls.Add(this.findFile);
             this.carveActivity.Controls.Add(this.txtCarveFile);
@@ -147,7 +149,7 @@ namespace MP4Carver
             this.carveFile.BackColor = System.Drawing.Color.Green;
             this.carveFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.carveFile.ForeColor = System.Drawing.SystemColors.Control;
-            this.carveFile.Location = new System.Drawing.Point(219, 392);
+            this.carveFile.Location = new System.Drawing.Point(111, 392);
             this.carveFile.Name = "carveFile";
             this.carveFile.Size = new System.Drawing.Size(120, 53);
             this.carveFile.TabIndex = 1;
@@ -392,6 +394,19 @@ namespace MP4Carver
             this.usernameprofile.TabIndex = 24;
             this.usernameprofile.Text = "label2";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SaddleBrown;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(326, 392);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 53);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Play Video";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,5 +477,6 @@ namespace MP4Carver
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox idUsr;
         private System.Windows.Forms.Label usernameprofile;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -14,6 +14,7 @@ using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using CsvHelper;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 
 //using WindowsFormsApplication1.DAL;
@@ -111,34 +112,34 @@ namespace MP4Carver
 
         private void carveFile_Click(object sender, EventArgs e)
         {
-
-            OpenFileDialog dv = new OpenFileDialog();
-            string filter = "csv file (*.csv)|*.csv| all files (*.*)|*.*";
-            dv.Filter = filter;
-            dv.ShowDialog();
-            txtCarveFile.Text = dv.FileName;
+            Process.Start("E:\\zue_project\\carve.exe");
+            //OpenFileDialog dv = new OpenFileDialog();
+            //string filter = "csv file (*.csv)|*.csv| all files (*.*)|*.*";
+            //dv.Filter = filter;
+            //dv.ShowDialog();
+            //txtCarveFile.Text = dv.FileName;
             //BindDataIntoCSV(txtCarveFile.Text);
            // BindTheDataCSV(txtCarveFile.Text);
 
         }
 
-        public class BindRawData
-        {
+        //public class BindRawData
+        //{
 
-            [DllImport("CarveTheFile.C", EntryPoint = "carveFile")]
+        //    [DllImport("CarveTheFile.C", EntryPoint = "carveFile")]
 
-            static extern void carveFile(string message);
+        //    static extern void carveFile(string message);
 
-            [DllImport("CarveTheFile.C", EntryPoint = "WriteToBinary")]
+        //    [DllImport("CarveTheFile.C", EntryPoint = "WriteToBinary")]
 
-            static extern void WriteToBinary(string message);
+        //    static extern void WriteToBinary(string message);
 
-            public static void Main(string[] args)
-            {
-                carveFile("Carving Successful"))
-                WriteToBinary("File Created");
-            }
-        }
+        //    public static void Main(string[] args)
+        //    {
+        //        carveFile("Carving Successful"))
+        //        WriteToBinary("File Created");
+        //    }
+        //}
 
 
 
@@ -505,6 +506,12 @@ namespace MP4Carver
 
         private void DGItem3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("E:\\zue_project\\heston.MKV");
 
         }
     }

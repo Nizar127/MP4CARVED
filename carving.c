@@ -1,8 +1,11 @@
+//Read file and display
+//Lab2 - BIS30803
+//20210401
 #include <stdio.h>
 main()
 {
 	FILE *file_input;
-	FILE* in;   //file handler to output data into binary
+		FILE* in;   //file handler to output data into binary
 	FILE* out;
 
 	unsigned char c; //unsigned
@@ -12,24 +15,24 @@ main()
 	unsigned char g; //unsigned
 	unsigned char h; //unsigned
 	unsigned char i; //unsigned
-	unsigned char j; //unsigned
+	unsigned char j; //un
 
-	long int counter=0L;
+	long int counter=4L;
 	long int saizFail, curPos=0L, current=0L;
-	long int magic_number_offset=4;
+	long int magic_number_offset=0;
 	long int cluster=0, found=0;
 
-	if ((file_input = fopen("E:\\zue_project\\thismp4.raw","rb"))==NULL)
+	if ((file_input = fopen("E:\\zue_project\\zue_cd\\ritemp4.001","rb"))==NULL)
 		printf("File cannot be opened");
 
-	fseek(file_input, 0L, SEEK_END); 	// pergi ke hujung fail
+	fseek(file_input, 4L, SEEK_END); 	// pergi ke hujung fail
 	saizFail=ftell(file_input); 		// dapatkan saiz fail
 	rewind(file_input);					// kembali ke permulaan fail
 	// fseek(file_input, 0L, SEEK_SET); // kembali ke permulaan fail - 0L ialah 0 jenis long integer
 	printf("File size = %ld bytes\n\n", saizFail);
 
 	//while (counter<saizFail)
-	while (counter<10000)
+	while (counter<100000)
 	{
 		c=fgetc(file_input);
 		printf("counter %ld >> %X\n", counter, c);
@@ -40,15 +43,15 @@ main()
 	//while (counter<100000)
 	while (counter<saizFail)
 	{
-		fseek(file_input, 0L, counter); // file starts from the beginning of cluster
+		fseek(file_input, 4L, counter); // file starts from the beginning of cluster
 		c=fgetc(file_input); //first byte e.g. 0xFF
 		d=fgetc(file_input); // 2nd byte e.g. 0xD8
-        e=fgetc(file_input); //unsigned
-        f=fgetc(file_input); //unsigned
-        g=fgetc(file_input); //unsigned
-        h=fgetc(file_input); //unsigned
-        i=fgetc(file_input); //unsigned
-        j=fgetc(file_input); //unsigned
+		e=fgetc(file_input);
+		f=fgetc(file_input);
+		g=fgetc(file_input);
+		h=fgetc(file_input);
+		i=fgetc(file_input);
+		j=fgetc(file_input);
 		if ((c==0x66) && (d==0x74) && (e==0x79) && (f==0x70) && (g==0x69) && (h==0x73) && (i==0x6F) && (j==0x6D))
 		{
 
@@ -66,12 +69,6 @@ main()
 		}
 		c=0;
 		d=0;
-		e=0; //unsigned
-        f=0; //unsigned
-        g=0; //unsigned
-        h=0; //unsigned
-        i=0; //unsigned
-        j=0;
 		counter=counter+512;  // jump 1 cluster at a time
 		cluster++;
 	}
@@ -83,9 +80,8 @@ main()
 	fclose(file_input);
 	getch(); // wait for keyboard press
 
-
 	//create binary file
-	fopen_s(&out, "carveFile.bin", "wb");    //we going to create file name carveFile.raw  and write it to binary
+	fopen_s(&out, "jpegTestFile.bin", "wb");    //we going to create file name carveFile.raw  and write it to binary
 	if(out == NULL){
         printf("\n>> Error Creating a File");
 	}
