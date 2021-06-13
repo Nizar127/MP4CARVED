@@ -359,7 +359,7 @@ namespace MP4Carver
                 string destination = @"C:\\Users\User\mp4_carver";
 
             //generate UUID
-               string newFileName = $@"{DateTime.Now.Ticks}.raw";
+               string newFileName = $@"{DateTime.Now.Ticks}.mp4";  //replace bin with any extension you like
                 if (!Directory.Exists(destination))
                 {
                 //create new directory if not exist
@@ -519,8 +519,8 @@ namespace MP4Carver
         {
             //this.Close();
             MessageBox.Show("You Have Logout");
-            this.Close();
-            //System.Windows.Forms.Application.ExitThread();
+            //this.Close();   //tutup window satu je
+            System.Windows.Forms.Application.ExitThread();   //tutup whole application
             //Login lg = new Login();
            // lg.Show();
         }

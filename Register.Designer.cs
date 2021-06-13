@@ -36,35 +36,35 @@ namespace MP4Carver
             this.label1 = new System.Windows.Forms.Label();
             this.gotologin = new System.Windows.Forms.LinkLabel();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.txtConfirmPass = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(68, 266);
+            this.txtPassword.Location = new System.Drawing.Point(241, 285);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(665, 30);
+            this.txtPassword.Size = new System.Drawing.Size(492, 30);
             this.txtPassword.TabIndex = 43;
-            this.txtPassword.Text = "Password";
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtMatricNo
             // 
             this.txtMatricNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMatricNo.Location = new System.Drawing.Point(68, 210);
+            this.txtMatricNo.Location = new System.Drawing.Point(241, 225);
             this.txtMatricNo.Margin = new System.Windows.Forms.Padding(2);
             this.txtMatricNo.Multiline = true;
             this.txtMatricNo.Name = "txtMatricNo";
             this.txtMatricNo.PasswordChar = '*';
-            this.txtMatricNo.Size = new System.Drawing.Size(665, 31);
+            this.txtMatricNo.Size = new System.Drawing.Size(492, 31);
             this.txtMatricNo.TabIndex = 42;
-            this.txtMatricNo.Text = "Matric Number";
             this.txtMatricNo.UseSystemPasswordChar = true;
             // 
             // labelClose
@@ -128,28 +128,15 @@ namespace MP4Carver
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // txtConfirmPass
-            // 
-            this.txtConfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmPass.Location = new System.Drawing.Point(68, 320);
-            this.txtConfirmPass.Margin = new System.Windows.Forms.Padding(2);
-            this.txtConfirmPass.Name = "txtConfirmPass";
-            this.txtConfirmPass.PasswordChar = '*';
-            this.txtConfirmPass.Size = new System.Drawing.Size(665, 30);
-            this.txtConfirmPass.TabIndex = 35;
-            this.txtConfirmPass.Text = "Confirm Password";
-            this.txtConfirmPass.UseSystemPasswordChar = true;
-            // 
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(68, 149);
+            this.txtUsername.Location = new System.Drawing.Point(240, 164);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsername.Multiline = true;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(665, 31);
+            this.txtUsername.Size = new System.Drawing.Size(492, 31);
             this.txtUsername.TabIndex = 34;
-            this.txtUsername.Text = "Username";
             this.txtUsername.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // label2
@@ -164,12 +151,57 @@ namespace MP4Carver
             this.label2.Text = "MP4CARVER";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.DimGray;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(68, 159);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 36);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Username";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.DimGray;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(68, 285);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 36);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Password";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.DimGray;
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(68, 220);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 36);
+            this.label5.TabIndex = 47;
+            this.label5.Text = "Matric Number";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtMatricNo);
@@ -177,7 +209,6 @@ namespace MP4Carver
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gotologin);
             this.Controls.Add(this.btnRegister);
-            this.Controls.Add(this.txtConfirmPass);
             this.Controls.Add(this.txtUsername);
             this.Name = "Register";
             this.Text = "REGISTER";
@@ -194,8 +225,10 @@ namespace MP4Carver
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel gotologin;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.TextBox txtConfirmPass;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
