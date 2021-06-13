@@ -88,7 +88,7 @@ main()
 
 		//size_t elements_written = fwrite(&cluster, sizeof(magic_number_offset), 1, out);
 
-	size_t elements_written = fwrite(&found, sizeof(saizFail), 2048, out);
+	size_t elements_written = fwrite(&found, sizeof(saizFail), 1024, out);
 	if(elements_written == 0){
         printf("\n>> Error Creating a File");
 

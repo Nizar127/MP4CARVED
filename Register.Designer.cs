@@ -41,12 +41,16 @@ namespace MP4Carver
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtConfirmPass = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.hidePass = new System.Windows.Forms.Button();
+            this.showPass = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(241, 285);
+            this.txtPassword.Location = new System.Drawing.Point(240, 259);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -58,7 +62,7 @@ namespace MP4Carver
             // txtMatricNo
             // 
             this.txtMatricNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMatricNo.Location = new System.Drawing.Point(241, 225);
+            this.txtMatricNo.Location = new System.Drawing.Point(240, 211);
             this.txtMatricNo.Margin = new System.Windows.Forms.Padding(2);
             this.txtMatricNo.Multiline = true;
             this.txtMatricNo.Name = "txtMatricNo";
@@ -171,7 +175,7 @@ namespace MP4Carver
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(68, 285);
+            this.label4.Location = new System.Drawing.Point(68, 259);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 36);
@@ -185,7 +189,7 @@ namespace MP4Carver
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(68, 220);
+            this.label5.Location = new System.Drawing.Point(68, 206);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(131, 36);
@@ -193,12 +197,63 @@ namespace MP4Carver
             this.label5.Text = "Matric Number";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtConfirmPass
+            // 
+            this.txtConfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmPass.Location = new System.Drawing.Point(240, 308);
+            this.txtConfirmPass.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConfirmPass.Name = "txtConfirmPass";
+            this.txtConfirmPass.PasswordChar = '*';
+            this.txtConfirmPass.Size = new System.Drawing.Size(492, 30);
+            this.txtConfirmPass.TabIndex = 48;
+            this.txtConfirmPass.UseSystemPasswordChar = true;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.DimGray;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label6.Location = new System.Drawing.Point(68, 308);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(131, 36);
+            this.label6.TabIndex = 49;
+            this.label6.Text = "Confirm Password";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // hidePass
+            // 
+            this.hidePass.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.hidePass.Image = ((System.Drawing.Image)(resources.GetObject("hidePass.Image")));
+            this.hidePass.Location = new System.Drawing.Point(698, 259);
+            this.hidePass.Name = "hidePass";
+            this.hidePass.Size = new System.Drawing.Size(34, 30);
+            this.hidePass.TabIndex = 50;
+            this.hidePass.UseVisualStyleBackColor = false;
+            this.hidePass.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // showPass
+            // 
+            this.showPass.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.showPass.Image = ((System.Drawing.Image)(resources.GetObject("showPass.Image")));
+            this.showPass.Location = new System.Drawing.Point(737, 259);
+            this.showPass.Name = "showPass";
+            this.showPass.Size = new System.Drawing.Size(34, 30);
+            this.showPass.TabIndex = 51;
+            this.showPass.UseVisualStyleBackColor = false;
+            this.showPass.Click += new System.EventHandler(this.showPass_Click);
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.showPass);
+            this.Controls.Add(this.hidePass);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtConfirmPass);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -230,5 +285,9 @@ namespace MP4Carver
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtConfirmPass;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button hidePass;
+        private System.Windows.Forms.Button showPass;
     }
 }

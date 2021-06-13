@@ -131,6 +131,18 @@ namespace MP4Carver
             
         }
 
+        //public Boolean ValidatePassword(string password)
+        //{
+        //    String patternPassword = @”^(?=.[0 - 9])(?=.[a - z])(?=.*[A - Z]).{ 8,}$”,
+        //    if (!string.IsNullOrEmpty(password))
+        //        {
+        //    if (!Regex.IsMatch(password, patternPassword))
+        //        (
+        //      return false;
+        //    )
+        //        return true;
+        //     )
+        // }
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -139,6 +151,25 @@ namespace MP4Carver
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(txtPassword.PasswordChar == '\0')
+            {
+                hidePass.BringToFront();
+                txtPassword.PasswordChar = '*';
+            }
+        }
+
+        private void showPass_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.PasswordChar == '*')
+            {
+                showPass.BringToFront();
+                //hidePass.BringToFront();
+                txtPassword.PasswordChar = '\0';
+            }
         }
     }
 }

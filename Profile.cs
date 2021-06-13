@@ -182,18 +182,16 @@ namespace MP4Carver
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string path = @"C:\ProgramData\File.mp4";
-           
-            FileStream fStream = new FileStream(path, FileMode.Create, FileAccess.Write);
-            byte[] content = new byte[16 * 1024];
-            //fStream.Write(content, 0, content.Length);
-            fStream.Write(content, 0, content.Length);
-            fStream.Close();
+            OpenFileDialog dv = new OpenFileDialog();
+            string filter = "csv file (*.csv)|*.csv| all files (*.*)|*.*";
+            dv.Filter = filter;
+            dv.ShowDialog();
+            txtCarveFile.Text = dv.FileName;
 
             //Console.WriteLine(string.Join("", readRecord(".mp4", "yes",9)));
             //MessageBox.Show(string.Join("",readRecord("yes", txtCarveFile.Text,7)));
 
-           
+
 
 
         }
@@ -243,14 +241,7 @@ namespace MP4Carver
         {
 
 
-            OpenFileDialog dg = new OpenFileDialog();
-            string filter = "csv file (*.csv)|*.csv| all files (*.*)|*.*";
-            dg.Filter = filter;
-            dg.ShowDialog();
-            txtFile.Text = dg.FileName;
-            //BindDataCSV(txtFile.Text);
-            //BindRawData(txtFile.Text);
-
+      
 
 
         }
@@ -323,7 +314,7 @@ namespace MP4Carver
 
             if (dt.Rows.Count > 0)
             {
-                DGItems.DataSource = dt;
+                DGItem3.DataSource = dt;
             }
 
         }
@@ -352,8 +343,8 @@ namespace MP4Carver
         private void saveBtn_Click(object sender, EventArgs e)
         {
 ;
-           //generate file based on textbox file
-            string filepath = txtFile.Text;
+            //generate file based on textbox file
+            string filepath = txtCarveFile.Text;
                 
             //create destination path
                 string destination = @"C:\\Users\User\mp4_carver";
@@ -392,7 +383,7 @@ namespace MP4Carver
 
             string rootFolder = @"C:\\Users\User\mp4_carver";
 
-            string filepath = txtFile.Text;
+            string filepath = txtCarveFile.Text;
 
             try
             {
@@ -400,8 +391,8 @@ namespace MP4Carver
                 {
                     File.Delete(Path.Combine(rootFolder, filepath));
                     MessageBox.Show("Files Deleted");
-                    this.DGItems.DataSource = null;
-                    this.DGItems.Rows.Clear();
+                    this.DGItem3.DataSource = null;
+                    this.DGItem3.Rows.Clear();
 
                 }
                 else MessageBox.Show("Files Unable to be Deleted");
@@ -432,20 +423,17 @@ namespace MP4Carver
 
         private void testMP4_Click(object sender, EventArgs e)
         {
-            Upload_file uploadFile = new Upload_file();
-            uploadFile.Show();
+            
         }
 
         private void mp4btn_Click(object sender, EventArgs e)
         {
-            Upload_file uploadFile = new Upload_file();
-            uploadFile.Show();
+            
         }
 
         private void mp4Btn_Click_1(object sender, EventArgs e)
         {
-            Upload_file vidUpload = new Upload_file();
-            vidUpload.Show();
+           
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -523,6 +511,57 @@ namespace MP4Carver
             System.Windows.Forms.Application.ExitThread();   //tutup whole application
             //Login lg = new Login();
            // lg.Show();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            //save file
+
+            //generate file based on textbox file
+            string filepath = txtCarveFile.Text;
+
+            //create destination path
+            string destination = @"C:\\Users\User\mp4_carver";
+
+            //generate UUID
+            string newFileName = $@"{DateTime.Now.Ticks}.mp4";  //replace bin with any extension you like
+            if (!Directory.Exists(destination))
+            {
+                //create new directory if not exist
+                Directory.CreateDirectory(@"C:\\Users\User\mp4_carver");
+            }
+
+            //copy or save the data in other destination
+            File.Copy(filepath, destination + "/" + newFileName);
+
+            MessageBox.Show("Files Transferred");
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            //delete file
+            string rootFolder = @"C:\\Users\User\mp4_carver";
+
+            string filepath = txtCarveFile.Text;
+
+            try
+            {
+                if (File.Exists(Path.Combine(rootFolder, filepath)))
+                {
+                    File.Delete(Path.Combine(rootFolder, filepath));
+                    MessageBox.Show("Files Deleted");
+                    this.DGItem3.DataSource = null;
+                    this.DGItem3.Rows.Clear();
+
+                }
+                else MessageBox.Show("Files Unable to be Deleted");
+
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
         }
     }
    
