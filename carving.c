@@ -81,12 +81,14 @@ main()
 	getch(); // wait for keyboard press
 
 	//create binary file
-	fopen_s(&out, "jpegTestFile.bin", "wb");    //we going to create file name carveFile.raw  and write it to binary
+	fopen_s(&out, "TestFile.bin", "wb");    //we going to create file name carveFile.raw  and write it to binary
 	if(out == NULL){
         printf("\n>> Error Creating a File");
 	}
 
-	size_t elements_written = fwrite(&cluster, sizeof(magic_number_offset), 1, out);
+		//size_t elements_written = fwrite(&cluster, sizeof(magic_number_offset), 1, out);
+
+	size_t elements_written = fwrite(&found, sizeof(cluster), 100000, out);
 	if(elements_written == 0){
         printf("\n>> Error Creating a File");
 

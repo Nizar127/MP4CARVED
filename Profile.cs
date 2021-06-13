@@ -514,6 +514,16 @@ namespace MP4Carver
             Process.Start("E:\\zue_project\\heston.MKV");
 
         }
+
+        private void logutBtnFile_Click(object sender, EventArgs e)
+        {
+            //this.Close();
+            MessageBox.Show("You Have Logout");
+            this.Close();
+            //System.Windows.Forms.Application.ExitThread();
+            //Login lg = new Login();
+           // lg.Show();
+        }
     }
    
 }
