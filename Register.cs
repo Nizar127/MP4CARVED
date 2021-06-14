@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
-
+using System.Text.RegularExpressions;
 using AesEncDec;
 using System.IO;
 
@@ -52,8 +52,48 @@ namespace MP4Carver
             try
             {
 
+                var txtInput = txtPassword.Text;
 
-                if (string.IsNullOrEmpty(txtUsername.Text) || (string.IsNullOrEmpty(txtPassword.Text)) || (string.IsNullOrEmpty(txtMatricNo.Text)))
+                if(txtInput == "")
+                {
+                    MessageBox.Show("Password Should not be empty");
+                    return;
+                }
+
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperCase = new Regex(@"[A-Z]+");
+                var hasLowerCase = new Regex(@"[a-z]+");
+                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]+");
+
+                if (!hasNumber.IsMatch(txtInput))
+                {
+                    MessageBox.Show("Password should have at least ONE Number Value");
+                    return;
+                }
+
+
+                else if (!hasUpperCase.IsMatch(txtInput))
+                {
+                    MessageBox.Show("Password should have at least ONE upper case letter Value");
+                    return;
+                }
+
+
+                else if (!hasLowerCase.IsMatch(txtInput))
+                {
+                    MessageBox.Show("Password should have at least ONE lower case letter Value");
+                    return;
+                }
+
+
+                else if (!hasSymbols.IsMatch(txtInput))
+                {
+                    MessageBox.Show("Password should have at least ONE symbol Value");
+                    return;
+                }
+
+
+               else  if (string.IsNullOrEmpty(txtUsername.Text) || (string.IsNullOrEmpty(txtPassword.Text)) || (string.IsNullOrEmpty(txtMatricNo.Text)))
                 {
                     MessageBox.Show("Please Fill Username and Password and Matric No", "Error");
                 }
@@ -155,20 +195,29 @@ namespace MP4Carver
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(txtPassword.PasswordChar == '\0')
-            {
-                hidePass.BringToFront();
-                txtPassword.PasswordChar = '*';
-            }
+
         }
 
         private void showPass_Click(object sender, EventArgs e)
         {
-            if (txtPassword.PasswordChar == '*')
-            {
-                showPass.BringToFront();
+      
+           // if (txtPassword.PasswordChar == '*')
+            //{
+              //  showPass.BringToFront();
                 //hidePass.BringToFront();
-                txtPassword.PasswordChar = '\0';
+              // txtPassword.PasswordChar = '\0';
+            //}
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked == true)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
             }
         }
     }

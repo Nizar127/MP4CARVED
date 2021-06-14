@@ -41,10 +41,7 @@ namespace MP4Carver
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtConfirmPass = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.hidePass = new System.Windows.Forms.Button();
-            this.showPass = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtPassword
@@ -53,7 +50,6 @@ namespace MP4Carver
             this.txtPassword.Location = new System.Drawing.Point(240, 259);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(492, 30);
             this.txtPassword.TabIndex = 43;
             this.txtPassword.UseSystemPasswordChar = true;
@@ -197,52 +193,16 @@ namespace MP4Carver
             this.label5.Text = "Matric Number";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtConfirmPass
+            // checkBox1
             // 
-            this.txtConfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmPass.Location = new System.Drawing.Point(240, 308);
-            this.txtConfirmPass.Margin = new System.Windows.Forms.Padding(2);
-            this.txtConfirmPass.Name = "txtConfirmPass";
-            this.txtConfirmPass.PasswordChar = '*';
-            this.txtConfirmPass.Size = new System.Drawing.Size(492, 30);
-            this.txtConfirmPass.TabIndex = 48;
-            this.txtConfirmPass.UseSystemPasswordChar = true;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.DimGray;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(68, 308);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 36);
-            this.label6.TabIndex = 49;
-            this.label6.Text = "Confirm Password";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // hidePass
-            // 
-            this.hidePass.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.hidePass.Image = ((System.Drawing.Image)(resources.GetObject("hidePass.Image")));
-            this.hidePass.Location = new System.Drawing.Point(698, 259);
-            this.hidePass.Name = "hidePass";
-            this.hidePass.Size = new System.Drawing.Size(34, 30);
-            this.hidePass.TabIndex = 50;
-            this.hidePass.UseVisualStyleBackColor = false;
-            this.hidePass.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // showPass
-            // 
-            this.showPass.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.showPass.Image = ((System.Drawing.Image)(resources.GetObject("showPass.Image")));
-            this.showPass.Location = new System.Drawing.Point(737, 259);
-            this.showPass.Name = "showPass";
-            this.showPass.Size = new System.Drawing.Size(34, 30);
-            this.showPass.TabIndex = 51;
-            this.showPass.UseVisualStyleBackColor = false;
-            this.showPass.Click += new System.EventHandler(this.showPass_Click);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(240, 305);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(102, 17);
+            this.checkBox1.TabIndex = 48;
+            this.checkBox1.Text = "Show Password";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Register
             // 
@@ -250,10 +210,7 @@ namespace MP4Carver
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.showPass);
-            this.Controls.Add(this.hidePass);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtConfirmPass);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -285,9 +242,6 @@ namespace MP4Carver
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtConfirmPass;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button hidePass;
-        private System.Windows.Forms.Button showPass;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
