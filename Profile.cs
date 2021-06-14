@@ -36,54 +36,54 @@ namespace MP4Carver
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        //private void button1_Click(object sender, EventArgs e)
+        //{
 
-            String imageLocation = "";
-            try
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    imageLocation = dialog.FileName;
-                    imageBox.ImageLocation = imageLocation;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-        }
-
-        public void saveImg()
-        {
-            MemoryStream ms = new MemoryStream();
-            imageBox.Image.Save(ms, imageBox.Image.RawFormat);
-            byte[] img = ms.ToArray();
-
-            String insertQuery = "INSERT INTO users(image)";
-
-            MySqlConnection dbconnection = new MySqlConnection(conn);
-            MySqlCommand commandDB = new MySqlCommand(insertQuery, dbconnection);
-            commandDB.CommandTimeout = 60;
-
-            dbconnection.Open();
-
-            commandDB.Parameters.Add("@img", MySqlDbType.Blob);
-            commandDB.Parameters["@img"].Value = img;
-
-            if (commandDB.ExecuteNonQuery() == 1)
-            {
-                MessageBox.Show("Data inserted");
-            }
-
-            dbconnection.Close();
+        //    String imageLocation = "";
+        //    try
+        //    {
+        //        OpenFileDialog dialog = new OpenFileDialog();
+        //        dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
+        //        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //        {
+        //            imageLocation = dialog.FileName;
+        //            imageBox.ImageLocation = imageLocation;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
 
 
-        }
+        //}
+
+        //public void saveImg()
+        //{
+        //    MemoryStream ms = new MemoryStream();
+        //    imageBox.Image.Save(ms, imageBox.Image.RawFormat);
+        //    byte[] img = ms.ToArray();
+
+        //    String insertQuery = "INSERT INTO users(image)";
+
+        //    MySqlConnection dbconnection = new MySqlConnection(conn);
+        //    MySqlCommand commandDB = new MySqlCommand(insertQuery, dbconnection);
+        //    commandDB.CommandTimeout = 60;
+
+        //    dbconnection.Open();
+
+        //    commandDB.Parameters.Add("@img", MySqlDbType.Blob);
+        //    commandDB.Parameters["@img"].Value = img;
+
+        //    if (commandDB.ExecuteNonQuery() == 1)
+        //    {
+        //        MessageBox.Show("Data inserted");
+        //    }
+
+        //    dbconnection.Close();
+
+
+        //}
 
         private void imageBox_Click(object sender, EventArgs e)
         {
@@ -143,42 +143,42 @@ namespace MP4Carver
 
 
 
-        private void BindTheDataCSV(string filepath)
-        {
-            DataTable dt = new DataTable();
-            string[] lines = System.IO.File.ReadAllLines(filepath);
-            if (lines.Length > 0)
-            {
-                string firstline = lines[0];
-                string[] headerlabels = firstline.Split('\t');
-                foreach (string headerword in headerlabels)
-                {
-                    dt.Columns.Add(new DataColumn(headerword));
-                }
+        //private void BindTheDataCSV(string filepath)
+        //{
+        //    DataTable dt = new DataTable();
+        //    string[] lines = System.IO.File.ReadAllLines(filepath);
+        //    if (lines.Length > 0)
+        //    {
+        //        string firstline = lines[0];
+        //        string[] headerlabels = firstline.Split('\t');
+        //        foreach (string headerword in headerlabels)
+        //        {
+        //            dt.Columns.Add(new DataColumn(headerword));
+        //        }
 
-                for (int r = 1; r < lines.Length; r++)
-                {
-                    string[] DataWords = lines[r].Split('\t');
-                    DataRow dr = dt.NewRow();
-                    int columnindex = 0;
-                    foreach (string headerword in headerlabels)
-                    {
-                        dr[headerword] = DataWords[columnindex++];
-                    }
-                    dt.Rows.Add(dr);
-                }
-            }
+        //        for (int r = 1; r < lines.Length; r++)
+        //        {
+        //            string[] DataWords = lines[r].Split('\t');
+        //            DataRow dr = dt.NewRow();
+        //            int columnindex = 0;
+        //            foreach (string headerword in headerlabels)
+        //            {
+        //                dr[headerword] = DataWords[columnindex++];
+        //            }
+        //            dt.Rows.Add(dr);
+        //        }
+        //    }
 
-            if (dt.Rows.Count > 0)
-            {
-                //.DataSource = dt;
-                DGItem3.DataSource = dt;
-                DataView dv;
-                dv = new DataView(dt, "Filename LIKE '%.mp4'", "Filename Desc", DataViewRowState.CurrentRows);
-                DGItem3.DataSource = dv.ToTable();
-            }
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        //.DataSource = dt;
+        //        DGItem3.DataSource = dt;
+        //        DataView dv;
+        //        dv = new DataView(dt, "Filename LIKE '%.mp4'", "Filename Desc", DataViewRowState.CurrentRows);
+        //        DGItem3.DataSource = dv.ToTable();
+        //    }
 
-        }
+        //}
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -286,38 +286,38 @@ namespace MP4Carver
             //}
         }
 
-        private void BindDataCSV(string filepath)
-        {
-            DataTable dt = new DataTable();
-            string[] lines = System.IO.File.ReadAllLines(filepath);
-            if (lines.Length > 0)
-            {
-                string firstline = lines[0];
-                string[] headerlabels = firstline.Split('\t');
-                foreach (string headerword in headerlabels)
-                {
-                    dt.Columns.Add(new DataColumn(headerword));
-                }
+        //private void BindDataCSV(string filepath)
+        //{
+        //    DataTable dt = new DataTable();
+        //    string[] lines = System.IO.File.ReadAllLines(filepath);
+        //    if (lines.Length > 0)
+        //    {
+        //        string firstline = lines[0];
+        //        string[] headerlabels = firstline.Split('\t');
+        //        foreach (string headerword in headerlabels)
+        //        {
+        //            dt.Columns.Add(new DataColumn(headerword));
+        //        }
 
-                for (int r = 1; r < lines.Length; r++)
-                {
-                    string[] DataWords = lines[r].Split('\t');
-                    DataRow dr = dt.NewRow();
-                    int columnindex = 0;
-                    foreach (string headerword in headerlabels)
-                    {
-                        dr[headerword] = DataWords[columnindex++];
-                    }
-                    dt.Rows.Add(dr);
-                }
-            }
+        //        for (int r = 1; r < lines.Length; r++)
+        //        {
+        //            string[] DataWords = lines[r].Split('\t');
+        //            DataRow dr = dt.NewRow();
+        //            int columnindex = 0;
+        //            foreach (string headerword in headerlabels)
+        //            {
+        //                dr[headerword] = DataWords[columnindex++];
+        //            }
+        //            dt.Rows.Add(dr);
+        //        }
+        //    }
 
-            if (dt.Rows.Count > 0)
-            {
-                DGItem3.DataSource = dt;
-            }
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        DGItem3.DataSource = dt;
+        //    }
 
-        }
+       // }
 
         private void viewFile_Click(object sender, EventArgs e)
         {
@@ -391,8 +391,8 @@ namespace MP4Carver
                 {
                     File.Delete(Path.Combine(rootFolder, filepath));
                     MessageBox.Show("Files Deleted");
-                    this.DGItem3.DataSource = null;
-                    this.DGItem3.Rows.Clear();
+                    //this.DGItem3.DataSource = null;
+                    //this.DGItem3.Rows.Clear();
 
                 }
                 else MessageBox.Show("Files Unable to be Deleted");
@@ -482,12 +482,12 @@ namespace MP4Carver
             reader = commandDB.ExecuteReader();
             if(reader.Read())
             {
-                usernameprofile.Text = reader["name"].ToString();
+               // usernameprofile.Text = reader["name"].ToString();
                
             }
             else
             {
-                usernameprofile.Text = "Record Unknown";
+                //usernameprofile.Text = "Record Unknown";
             }
            
         }
@@ -550,8 +550,8 @@ namespace MP4Carver
                 {
                     File.Delete(Path.Combine(rootFolder, filepath));
                     MessageBox.Show("Files Deleted");
-                    this.DGItem3.DataSource = null;
-                    this.DGItem3.Rows.Clear();
+                    //this.DGItem3.DataSource = null;
+                    //this.DGItem3.Rows.Clear();
 
                 }
                 else MessageBox.Show("Files Unable to be Deleted");
@@ -562,6 +562,11 @@ namespace MP4Carver
                 MessageBox.Show(ex.Message);
 
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
    
